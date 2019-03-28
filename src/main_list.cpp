@@ -43,11 +43,12 @@ int main_list(int argc, char** argv)
 	lista.insert_end(10);
 	lista.insert_end(11);
 
-
+	std::cout<<"clear	***********************************************************8"<<std::endl;
+	lista.clear();
 	indexes.print();
 	lista.print();
     std::cout<<std::endl;
-
+	std::cout<<"clear	***********************************************************8"<<std::endl;
 
     lista.remove_beg();
     std::cout<<"remove beg	***********************************************************8"<<std::endl;

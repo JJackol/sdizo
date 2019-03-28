@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 struct Node
 {
@@ -20,6 +21,9 @@ class SL_List
 	SL_List(SL_List & L);
 	~SL_List();
 
+	void load_from_file(std::string file_name);
+	void generate_arr(unsigned int _size=16);
+
 	void print();
 	bool is_Empty();
 
@@ -34,5 +38,6 @@ class SL_List
 	void remove_val(int val);
 	void remove_end();
 	void remove_beg();
+	void clear();
 
 };

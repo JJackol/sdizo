@@ -1,7 +1,10 @@
 #include "SL_List.h"
 #include <iostream>
 #include <cassert>
+#include <fstream>
 #include <iomanip>
+#include <ctime>
+#include <cstdlib>
 
 	SL_List::SL_List()
 	{
@@ -18,6 +21,36 @@
                 delete head;
                 head = temp;
             }
+
+	}
+
+	void SL_List::load_from_file(std::string file_name)
+	{
+		clear();
+		std::fstream file;
+		std::string input;
+		int x;
+		file.open( file_name , std::ios::in );
+		if( file.good() == true )
+		{
+			while(!file.eof())
+			{
+				file>>input;
+				x=stoi(input);
+				this->insert_end(x);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
+	}
+
+	void SL_List::generate_arr(unsigned int _size)
+	{
+		clear();
+		srand(time(NULL));
+		for(unsigned int i = 0; i<_size; i++)
+			insert_end(rand()%1000);
 
 	}
 
@@ -77,6 +110,12 @@
 				head = new Node{val};
 			return;
 		}
+		if(index == 0)
+		{
+			insert_beg(val);
+			return;
+		}
+
 
 		Node* temp = head;
 		while(temp->next != nullptr && --index)
@@ -205,4 +244,10 @@
             head = head->next;
             delete temp;
         }
+	}
+
+	void SL_List::clear()
+	{
+		while(!is_Empty())
+			remove_beg();
 	}
