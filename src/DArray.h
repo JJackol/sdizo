@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 class DArray
 {
@@ -11,13 +12,15 @@ class DArray
 		virtual ~DArray();
 		DArray(const DArray& other);
 		DArray& operator=(const DArray& other);
+		void load_from_file(std::string file_name);
+		void generate_arr(unsigned int _size=16);
 
 		void print();
 		bool is_Empty();
 
 		void insert_end(int val);
 		void insert_beg(int val);
-		void insert(int index, int val);
+		void insert(unsigned int index, int val);
 
 		int at(unsigned int index);
 		int find(int val);	//zawraca index pierwszego znalezionego elementu

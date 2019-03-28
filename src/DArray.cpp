@@ -1,39 +1,71 @@
 #include "DArray.h"
 #include <iostream>
+#include <fstream>
 #include <iomanip>
+#include <ctime>
+#include <cstdlib>
 
-DArray::DArray(unsigned int _aloc_size) : aloc_size(_aloc_size), size(0)
-{
-	unsigned int i=1;
-	while(i<aloc_size)
-		i*=2;
-	aloc_size=i;
-	tab = new int[aloc_size];
-}
 
-DArray::~DArray()
-{
-	delete[] tab;
-}
+	DArray::DArray(unsigned int _aloc_size) : aloc_size(_aloc_size), size(0)
+	{
+		unsigned int i=1;
+		while(i<aloc_size)
+			i*=2;
+		aloc_size=i;
+		tab = new int[aloc_size];
+	}
 
-DArray::DArray(const DArray& other) : aloc_size(other.aloc_size), size(other.size)
-{
-	tab = new int[aloc_size];
-	copy(other.tab, tab, size);
-}
+	DArray::~DArray()
+	{
+		delete[] tab;
+	}
 
-DArray& DArray::operator=(const DArray& other)
-{
-	if (this == &other) return *this; // handle self assignment
+	DArray::DArray(const DArray& other) : aloc_size(other.aloc_size), size(other.size)
+	{
+		tab = new int[aloc_size];
+		copy(other.tab, tab, size);
+	}
 
-	aloc_size = other.aloc_size;
-	size = other.size;
-	tab = new int[aloc_size];
-	copy(other.tab, tab, size);
+	DArray& DArray::operator=(const DArray& other)
+	{
+		if (this == &other) return *this; // handle self assignment
 
-	return *this;
-}
+		aloc_size = other.aloc_size;
+		size = other.size;
+		tab = new int[aloc_size];
+		copy(other.tab, tab, size);
 
+		return *this;
+	}
+	void DArray::load_from_file(std::string file_name)
+	{
+		clear();
+		std::fstream file;
+		std::string input;
+		int x;
+		file.open( file_name , std::ios::in );
+		if( file.good() == true )
+		{
+			while(!file.eof())
+			{
+				file>>input;
+				x=stoi(input);
+				this->insert_end(x);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
+	}
+
+	void DArray::generate_arr(unsigned int _size)
+	{
+		clear();
+		srand(time(NULL));
+		for(unsigned int i = 0; i<_size; i++)
+			insert_end(rand()%1000);
+
+	}
 
 	void DArray::print()
 	{
@@ -81,8 +113,14 @@ DArray& DArray::operator=(const DArray& other)
 			size++;
 		}
 	}
-	void DArray::insert(int index, int val)
+	void DArray::insert(unsigned int index, int val)
 	{
+		if(index>size)
+		{
+			std::cout<< "out of bounds, can't insert"<<std::endl;
+			return;
+		}
+
 		if(size < aloc_size)
 		{
 			copy_inv(tab+index, tab+index+1, size); //rozsuń tablicę

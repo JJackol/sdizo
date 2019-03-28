@@ -40,9 +40,14 @@ int main_array(int argc, char** argv)
 	tablica.insert_end(12);
 	tablica.insert_end(10);
 	tablica.insert_end(11);
+	//std::cout<<"clear  ************************************************************************"<<std::endl;
+
+	//tablica.clear();
 
 	indexes.print();
 	tablica.print();
+	//std::cout<<"insert clear  ************************************************************************"<<std::endl;
+
 	std::cout<<std::endl;
 
 	std::cout<<"insert beg 2 razy  ************************************************************************"<<std::endl;
