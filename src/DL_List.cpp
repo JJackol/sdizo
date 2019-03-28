@@ -71,19 +71,8 @@
 	}
 	void SL_List::insert(int index, int val)
 	{
-		if(is_Empty())
-		{
-			if(index==0)
-				head = new Node{val};
-			return;
-		}
-
-		Node* temp = head;
-		while(temp->next != nullptr && --index)
-		{
-			temp = temp->next;
-		}
-		temp->next = new Node{val, temp->next};
+// TODO (jaca#1#): inert item
+	    //todo
 	}
 
 	int SL_List::at(int index)

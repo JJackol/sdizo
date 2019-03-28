@@ -15,7 +15,6 @@ class SL_List
 	//int my_size = 0;
 
 	public:
-
 	SL_List();
 	SL_List(SL_List & L);
 	~SL_List();
