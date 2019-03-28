@@ -36,11 +36,11 @@
 			<Add option="-g" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
-		<Unit filename="sdizo/SL_List.cpp" />
-		<Unit filename="sdizo/SL_List.h" />
-		<Unit filename="sdizo/main_list.cpp" />
-		<Unit filename="sdizo/main_list.h" />
+		<Unit filename="sdizo/src/main.cpp" />
+		<Unit filename="sdizo/src/SL_List.cpp" />
+		<Unit filename="sdizo/src/SL_List.h" />
+		<Unit filename="sdizo/src/main_list.cpp" />
+		<Unit filename="sdizo/src/main_list.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
