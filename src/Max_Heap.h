@@ -16,7 +16,7 @@ class Max_Heap
 		void push(int val);
 		void pop_root();
 
-		void printBT(std::string sp="", std::string sn="", int v=0);
+		void print(std::string sp="", std::string sn="", int v=0);
 	protected:
 
 	private:

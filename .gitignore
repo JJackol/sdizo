@@ -1,3 +1,7 @@
+#laout codeblocks
+*.layout
+struktury2.cbp
+*.depend
 #file manager temp file
 .directory
 # Prerequisites

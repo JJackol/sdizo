@@ -19,11 +19,11 @@ int main_heap(int argc, char** argv)
 	kopiec.push(6);
 	kopiec.push(8);
 
-	kopiec.printBT();
+	kopiec.print();
 
 	std::cout << std::endl;
 	kopiec.pop_root();
-	kopiec.printBT();
+	kopiec.print();
 
 
 

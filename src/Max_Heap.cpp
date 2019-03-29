@@ -97,7 +97,7 @@
 //--------------------------
 //słabo sformatowana funkcja wypisująca drzewo (początkowo wystarczy do testowania).
 //przechodzi przez drzewo in-order;
-void Max_Heap::printBT(std::string sp, std::string sn, int v)
+void Max_Heap::print(std::string sp, std::string sn, int v)
 {
 	std::string s;
 
@@ -106,7 +106,7 @@ void Max_Heap::printBT(std::string sp, std::string sn, int v)
 		s = sp;
 		if(sn == cr)
 			s[s.length() - 2] = ' ';
-		printBT(s + cp, cr, 2 * v + 2);
+		print(s + cp, cr, 2 * v + 2);
 
 		s = s.substr(0,sp.length()-2);
 
@@ -115,6 +115,6 @@ void Max_Heap::printBT(std::string sp, std::string sn, int v)
 		s = sp;
 		if(sn == cl)
 			s[s.length() - 2] = ' ';
-		printBT(s + cp, cl, 2 * v + 1);
+		print(s + cp, cl, 2 * v + 1);
 	}
 }

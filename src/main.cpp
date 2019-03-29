@@ -5,11 +5,14 @@
 #include "DArray.h"
 #include "menu.h"
 
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
+    srand(time(NULL));
 	main_heap(argc, argv);
 //	main_list(argc, argv);
 //	main_array(argc, argv);
@@ -20,7 +23,7 @@ int main(int argc, char** argv)
 
     cout << argv[0] << endl;
     cout << "Program: Struktury" << endl;
-    //menu();
+    menu();
 
 
     return 0;

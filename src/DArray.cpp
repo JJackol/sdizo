@@ -61,7 +61,6 @@
 	void DArray::generate_arr(unsigned int _size)
 	{
 		clear();
-		srand(time(NULL));
 		for(unsigned int i = 0; i<_size; i++)
 			insert_end(rand()%1000);
 

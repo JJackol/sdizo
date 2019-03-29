@@ -38,21 +38,21 @@
 			<Add option="-g" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="sdizo/src/DArray.cpp" />
-		<Unit filename="sdizo/src/DArray.h" />
-		<Unit filename="sdizo/src/Max_Heap.cpp" />
-		<Unit filename="sdizo/src/Max_Heap.h" />
-		<Unit filename="sdizo/src/SL_List.cpp" />
-		<Unit filename="sdizo/src/SL_List.h" />
-		<Unit filename="sdizo/src/main.cpp" />
-		<Unit filename="sdizo/src/main_array.cpp" />
-		<Unit filename="sdizo/src/main_array.h" />
-		<Unit filename="sdizo/src/main_heap.cpp" />
-		<Unit filename="sdizo/src/main_heap.h" />
-		<Unit filename="sdizo/src/main_list.cpp" />
-		<Unit filename="sdizo/src/main_list.h" />
-		<Unit filename="sdizo/src/menu.cpp" />
-		<Unit filename="sdizo/src/menu.h" />
+		<Unit filename="src/DArray.cpp" />
+		<Unit filename="src/DArray.h" />
+		<Unit filename="src/Max_Heap.cpp" />
+		<Unit filename="src/Max_Heap.h" />
+		<Unit filename="src/SL_List.cpp" />
+		<Unit filename="src/SL_List.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/main_array.cpp" />
+		<Unit filename="src/main_array.h" />
+		<Unit filename="src/main_heap.cpp" />
+		<Unit filename="src/main_heap.h" />
+		<Unit filename="src/main_list.cpp" />
+		<Unit filename="src/main_list.h" />
+		<Unit filename="src/menu.cpp" />
+		<Unit filename="src/menu.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

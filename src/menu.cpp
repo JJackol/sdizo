@@ -51,7 +51,7 @@ void displayMenu(string info)
 	cout << "4.Znajdz" << endl;
 	cout << "5.Utworz losowo" << endl;
 	cout << "6.Wyswietl" << endl;
-	cout << "7.Test (pomiary)	//brak implementacji" << endl;
+	cout << "7.Test (pomiary)" << endl;
 	cout << "0.Powrot do menu" << endl;
 	cout << "Podaj opcje:";
 }
@@ -127,7 +127,7 @@ void menu_table()
 
 void menu_list()
 {
-	 char opt;
+    char opt;
 	string fileName;
 	int index, value;
 
@@ -195,6 +195,67 @@ void menu_list()
 void menu_heap()
 {
 	//analogicznie jak menu_table()
+    char opt;
+	string fileName;
+	int index, value;
+
+	SL_List kopiec;
+
+	do{
+		displayMenu("--- KOPIEC ---");
+		cin >> opt;
+		cout << endl;
+		switch (opt){
+		case '1': //tutaj wczytywanie  kopca z pliku
+			cout << " Podaj nazwę zbioru:";
+			cin >> fileName;
+			kopiec.load_from_file(fileName);
+			kopiec.print();
+			break;
+
+		case '2': //tutaj usuwanie elementu z kopca
+			cout << " podaj index:";
+			cin >> index;
+			kopiec.remove_at(index);
+			kopiec.print();
+			break;
+
+		case '3': //tutaj dodawanie elementu do kopca
+			cout << " podaj waertość:";
+			cin >> value;
+
+			kopiec.insert(index,value);
+			kopiec.print();
+			break;
+
+		case '4': //tutaj znajdowanie elemetu w tablicy
+			cout << " podaj waertość:";
+			cin >> value;
+			if (kopiec.find(value) >= 0 )
+				cout << "poadana wartośc jest w tablicy";
+			else
+				cout << "poadanej wartości NIE ma w tablicy";
+			break;
+
+		case '5':  //tutaj generowanie  tablicy
+			cout << "Podaj ilość elementów tablicy:";
+			cin >> value;
+
+			kopiec.generate_arr(value);
+
+			kopiec.print();
+			break;
+
+		case '6':  //tutaj wyświetlanie tablicy
+			kopiec.print();
+			break;
+
+		case '7': //tutaj nasza funkcja do eksperymentów (pomiary czasów i generowanie daneych) - nie będzie testowana przez prowadzącego
+			      // można sobie tu dodać własne case'y
+			break;
+		}
+
+    } while (opt != '0');
 }
 
 
