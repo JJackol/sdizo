@@ -5,7 +5,8 @@ struct Node
 {
 	int val=0;
 	Node* next=nullptr;
-	Node(int _val=0, Node* _next=nullptr) : val(_val), next(_next)
+	Node(int _val=0, Node* _next=nullptr)
+        : val(_val), next(_next)
 	{};
 };
 

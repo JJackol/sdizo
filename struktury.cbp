@@ -40,6 +40,8 @@
 		</Compiler>
 		<Unit filename="src/DArray.cpp" />
 		<Unit filename="src/DArray.h" />
+		<Unit filename="src/DL_List.cpp" />
+		<Unit filename="src/DL_List.h" />
 		<Unit filename="src/Max_Heap.cpp" />
 		<Unit filename="src/Max_Heap.h" />
 		<Unit filename="src/SL_List.cpp" />

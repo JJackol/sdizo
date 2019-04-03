@@ -146,9 +146,9 @@ void menu_list()
 			break;
 
 		case '2': //tutaj usuwanie elementu z tablicy
-			cout << " podaj index:";
-			cin >> index;
-			lista.remove_at(index);
+			cout << " podaj wartosc:";
+			cin >> value;
+			lista.remove_val(value);
 			lista.print();
 			break;
 
@@ -199,7 +199,7 @@ void menu_heap()
 	string fileName;
 	int index, value;
 
-	SL_List kopiec;
+	Max_Heap kopiec;
 
 	do{
 		displayMenu("--- KOPIEC ---");
@@ -216,7 +216,7 @@ void menu_heap()
 		case '2': //tutaj usuwanie elementu z kopca
 			cout << " podaj index:";
 			cin >> index;
-			kopiec.remove_at(index);
+			//kopiec.remove_at(index);
 			kopiec.print();
 			break;
 
@@ -224,24 +224,24 @@ void menu_heap()
 			cout << " podaj waertość:";
 			cin >> value;
 
-			kopiec.insert(index,value);
+			kopiec.push(value);
 			kopiec.print();
 			break;
 
 		case '4': //tutaj znajdowanie elemetu w tablicy
 			cout << " podaj waertość:";
 			cin >> value;
-			if (kopiec.find(value) >= 0 )
-				cout << "poadana wartośc jest w tablicy";
-			else
-				cout << "poadanej wartości NIE ma w tablicy";
+//			if (kopiec.find(value) >= 0 )
+//				cout << "poadana wartośc jest w tablicy";
+//			else
+//				cout << "poadanej wartości NIE ma w tablicy";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
 			cout << "Podaj ilość elementów tablicy:";
 			cin >> value;
 
-			kopiec.generate_arr(value);
+			//kopiec.generate_arr(value);
 
 			kopiec.print();
 			break;

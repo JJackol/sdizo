@@ -42,11 +42,12 @@
 		clear();
 		std::fstream file;
 		std::string input;
-		int x;
+		int x,s;
 		file.open( file_name , std::ios::in );
 		if( file.good() == true )
 		{
-			while(!file.eof())
+		    file >> s;
+			while(!file.eof() && s--)
 			{
 				file>>input;
 				x=stoi(input);

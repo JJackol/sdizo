@@ -1,23 +1,25 @@
 #pragma once
 
-struct Node
+struct Node2
 {
 	int val=0;
-	Node* next=nullptr;
-	Node(int _val=0, Node* _next=nullptr) : val(_val), next(_next)
+	Node2* next=nullptr;
+	Node2* prev=nullptr;
+	Node2(int _val=0, Node2* _next=nullptr, Node2* _prev=nullptr )
+        : val(_val), next(_next), prev(_prev)
 	{};
 };
 
-class SL_List
+class DL_List
 {
-	Node* head = nullptr;
-	//Node* tail = nullptr;
+	Node2* head = nullptr;
+	Node2* tail = nullptr;
 	//int my_size = 0;
 
 	public:
-	SL_List();
-	SL_List(SL_List & L);
-	~SL_List();
+	DL_List();
+	DL_List(DL_List & L);
+	~DL_List();
 
 	void print();
 	bool is_Empty();

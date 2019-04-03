@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
     srand(time(NULL));
-	main_heap(argc, argv);
+	//main_heap(argc, argv);
 //	main_list(argc, argv);
 //	main_array(argc, argv);
 //	DArray tab;

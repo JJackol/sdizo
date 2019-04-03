@@ -1,7 +1,7 @@
 #include "Max_Heap.h"
 #include <iostream>
 #include <iomanip>
-
+#include <fstream>
 
 //enum Edges
 //{
@@ -29,7 +29,7 @@
 //	cp[0] = 179;
 
 	cr = cl = cp = "  ";
-	cr[0] = '.';  cr[1] = '-';
+	cr[0] = '.';  cr[1] = '_';
 	cl[0] = '.'; cl[1] = '_';
 	cp[0] = '|';
 	}
@@ -37,6 +37,29 @@
 	Max_Heap::~Max_Heap()
 	{
 		delete[] tab;
+	}
+
+	void Max_Heap::load_from_file(std::string file_name)
+	{
+		//clear();
+		std::fstream file;
+		std::string input;
+		int x,s;
+		file.open( file_name , std::ios::in );
+		if( file.good() == true )
+		{
+		    file >> input;
+		    s=stoi(input);
+			while(!file.eof() && s--)
+			{
+				file>>input;
+				x=stoi(input);
+				this->push(x);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
 	}
 
 	void Max_Heap::push(int val)

@@ -1,17 +1,17 @@
-#include "SL_List.h"
+#include "DL_List.h"
 #include <iostream>
 #include <cassert>
 #include <iomanip>
 
-	SL_List::SL_List()
+	DL_List::DL_List()
 	{
 	}
-	SL_List::SL_List(SL_List & L)
+	DL_List::DL_List(DL_List & L)
 	{
 	}
-	SL_List::~SL_List()
+	DL_List::~DL_List()
 	{
-	    Node * temp;
+	    Node2 * temp;
 	    while(head != nullptr)
             {
                 temp = head->next;
@@ -21,10 +21,10 @@
 
 	}
 
-	void SL_List::print()
+	void DL_List::print()
 	{
 
-	    Node* temp = head;
+	    Node2* temp = head;
 	    while(temp != nullptr)
         {
             //std::cout.width(3);
@@ -42,40 +42,40 @@
 
 	}
 
-	bool SL_List::is_Empty()
+	bool DL_List::is_Empty()
 	{
 		return head==nullptr;
 	}
-	void SL_List::insert_end(int val)
+	void DL_List::insert_end(int val)
 	{
 	    if(head==nullptr)
         {
-            head = new Node{val};
+            head = new Node2{val};
             return;
         }
-        Node* temp = head;
+        Node2* temp = head;
         while(temp->next != nullptr)
             temp = temp->next;
-        temp->next = new Node{val};
+        temp->next = new Node2{val};
 
 	}
-	void SL_List::insert_beg(int val)
+	void DL_List::insert_beg(int val)
 	{
 	    if(is_Empty())
         {
-            head = new Node{val, nullptr};
+            head = new Node2{val, nullptr};
             return;
         }
-        Node* temp=head;
-        head = new Node{val, temp};
+        Node2* temp=head;
+        head = new Node2{val, temp};
 	}
-	void SL_List::insert(int index, int val)
+	void DL_List::insert(int index, int val)
 	{
 // TODO (jaca#1#): inert item
 	    //todo
 	}
 
-	int SL_List::at(int index)
+	int DL_List::at(int index)
 	{
         if(is_Empty())
         {
@@ -83,7 +83,7 @@
             return -1;
         }
 
-        Node* temp=head;
+        Node2* temp=head;
         while(index--)
         {
             if(temp->next == nullptr) // jesli i-ty el nie istnieje wyjdź
@@ -97,11 +97,11 @@
 
 
 	}
-	int SL_List::find(int val)
+	int DL_List::find(int val)
 	{
 	    if(is_Empty())
             return -1;
-        Node* temp=head;
+        Node2* temp=head;
         int i=0;
         do
         {
@@ -112,12 +112,12 @@
         }while(temp->next != nullptr);
         return -2;
 	}
-	void SL_List::remove_at(int index)
+	void DL_List::remove_at(int index)
 	{
 	    assert(index>=0);
 	    if(is_Empty())
             return;
-        Node* temp = head;
+        Node2* temp = head;
         if(index==0) // jesli usuwany jest 0 el.
         {
             head = head->next;
@@ -132,42 +132,42 @@
             temp = temp->next;
 
 	    }
-	    Node* delNode = temp->next;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika
-	    if(delNode!= nullptr)
+	    Node2* delNode2 = temp->next;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika
+	    if(delNode2!= nullptr)
         {
-            temp->next = delNode->next;
-            delete delNode;
+            temp->next = delNode2->next;
+            delete delNode2;
         }
         return;
 	}
 
 	//usuwa wszystkie wystąpienia val
-	void SL_List::remove_val(int val)
+	void DL_List::remove_val(int val)
 	{
 	    if(is_Empty()) //jesli lista jest pusta nic nie rob
             return;
 
-        Node* temp = head;
+        Node2* temp = head;
         while(head->val == val){
             head = head->next;
             delete temp;
             temp = head;
         }
-        Node* delNode;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika
+        Node2* delNode2;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika
 
 	    while( temp->next != nullptr){
             if( (temp->next)->val==val )
             {
-                delNode = temp->next;
-                temp->next = delNode->next; //przestaw wskaźnik
-                delete delNode;
+                delNode2 = temp->next;
+                temp->next = delNode2->next; //przestaw wskaźnik
+                delete delNode2;
 
             }
             else    temp = temp->next;//przejdź do kolejnego
         }
 	}
 
-	void SL_List::remove_end()
+	void DL_List::remove_end()
 	{
 	    if(is_Empty()) //jeśli lista jest pusta nic nie rób
             return;
@@ -177,7 +177,7 @@
             head = nullptr;
             return;
         }
-	    Node* temp = head;
+	    Node2* temp = head;
 	    //dopóki element następny względem następnego(2 do przodu) istnieje
 	    while( (temp->next)->next != nullptr)
             //przejdz do kolejnego
@@ -185,12 +185,12 @@
         delete temp->next;
         temp->next = nullptr; //temp jest teraz ogonem
 	}
-	void SL_List::remove_beg()
+	void DL_List::remove_beg()
 	{
-	    //Node* temp=head;
+	    //Node2* temp=head;
 	    if(!is_Empty())
         {
-            Node* temp = head;
+            Node2* temp = head;
             head = head->next;
             delete temp;
         }
