@@ -22,6 +22,7 @@ class DL_List
 	~DL_List();
 
 	void print();
+	void print_rev();
 	bool is_Empty();
 
 	void insert_end(int val);
@@ -35,5 +36,6 @@ class DL_List
 	void remove_val(int val);
 	void remove_end();
 	void remove_beg();
+	void clear();
 
 };

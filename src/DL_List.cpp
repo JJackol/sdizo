@@ -33,12 +33,20 @@
 	    }
 	    std::cout<<std::endl;
 
-//	    for (int i = 0; i<my_size; i++)
-//        {
-//            std::cout<< temp->val << " ";
-//            temp = temp->next;
-//        }
-//        std::cout<<std::endl;
+
+	}
+
+	void DL_List::print_rev()
+	{
+
+	    Node2* temp = tail;
+	    while(temp != nullptr)
+        {
+            //std::cout.width(3);
+            std::cout<< std::setw(4)<<std::left <<temp->val << " ";
+            temp = temp->prev;
+	    }
+	    std::cout<<std::endl;
 
 	}
 
@@ -51,23 +59,29 @@
 	    if(head==nullptr)
         {
             head = new Node2{val};
+            tail = head;
             return;
         }
-        Node2* temp = head;
-        while(temp->next != nullptr)
-            temp = temp->next;
-        temp->next = new Node2{val};
+        else
+		{
+			tail->next = new Node2{val, nullptr, tail};
+			tail = tail->next;
+        }
+
 
 	}
 	void DL_List::insert_beg(int val)
 	{
 	    if(is_Empty())
         {
-            head = new Node2{val, nullptr};
+            tail = head = new Node2{val, nullptr};
             return;
         }
-        Node2* temp=head;
-        head = new Node2{val, temp};
+        else
+		{
+			head->prev = new Node2{val, head};
+			head = head->prev;
+		}
 	}
 	void DL_List::insert(int index, int val)
 	{
@@ -97,7 +111,7 @@
 
 
 	}
-	int DL_List::find(int val)
+	int DL_List::find(int val)//done
 	{
 	    if(is_Empty())
             return -1;
@@ -109,10 +123,11 @@
                 return i;
             temp = temp->next;
             i++;
-        }while(temp->next != nullptr);
+        }while(temp != nullptr);
         return -2;
 	}
-	void DL_List::remove_at(int index)
+
+	void DL_List::remove_at(int index)//done
 	{
 	    assert(index>=0);
 	    if(is_Empty())
@@ -120,8 +135,7 @@
         Node2* temp = head;
         if(index==0) // jesli usuwany jest 0 el.
         {
-            head = head->next;
-            delete temp;
+            remove_beg();
             return;
         }
 
@@ -136,6 +150,12 @@
 	    if(delNode2!= nullptr)
         {
             temp->next = delNode2->next;
+            if(temp->next != nullptr)
+			{
+				temp->next->prev = temp;
+			}
+			else	tail = temp;
+
             delete delNode2;
         }
         return;
@@ -149,49 +169,68 @@
 
         Node2* temp = head;
         while(head->val == val){
-            head = head->next;
-            delete temp;
+            remove_beg();
             temp = head;
         }
-        Node2* delNode2;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika
+        Node2* pre_del;//zmienna pomocnicza do usuwania węzła i przerzucenia wskaźnika, poprzednik usuwanego
 
-	    while( temp->next != nullptr){
-            if( (temp->next)->val==val )
-            {
-                delNode2 = temp->next;
-                temp->next = delNode2->next; //przestaw wskaźnik
-                delete delNode2;
-
-            }
-            else    temp = temp->next;//przejdź do kolejnego
-        }
+        while(temp != nullptr)
+		{
+			if(temp->val == val)
+			{
+				pre_del = temp->prev;
+				pre_del->next = temp->next;
+				delete temp;
+				if(pre_del->next != nullptr)
+				{
+					temp = pre_del->next;
+					temp->prev = pre_del;
+				}
+				else
+				{
+					tail = pre_del;
+				}
+			}
+			else
+			{
+				temp = temp->next;
+			}
+		}//koniec while'a
 	}
 
 	void DL_List::remove_end()
 	{
-	    if(is_Empty()) //jeśli lista jest pusta nic nie rób
-            return;
-        if(head->next == nullptr) //jeśli lista ma jeden element usuń go
+		if(!is_Empty())
         {
-            delete head;
-            head = nullptr;
-            return;
+        	if( head == tail )
+			{
+				delete head;
+				head = tail = nullptr;
+				return;
+			}
+            tail = tail->prev;
+            delete tail->next;
+            tail->next = nullptr;
         }
-	    Node2* temp = head;
-	    //dopóki element następny względem następnego(2 do przodu) istnieje
-	    while( (temp->next)->next != nullptr)
-            //przejdz do kolejnego
-            temp = temp->next;
-        delete temp->next;
-        temp->next = nullptr; //temp jest teraz ogonem
 	}
 	void DL_List::remove_beg()
 	{
-	    //Node2* temp=head;
 	    if(!is_Empty())
         {
-            Node2* temp = head;
+        	if( head == tail)
+			{
+				delete head;
+				head = tail = nullptr;
+				return;
+			}
             head = head->next;
-            delete temp;
+            delete head->prev;
+            head->prev = nullptr;
         }
+	}
+
+	void DL_List::clear()
+	{
+		while(!is_Empty())
+			remove_beg();
 	}
