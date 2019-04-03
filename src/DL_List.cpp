@@ -85,8 +85,25 @@
 	}
 	void DL_List::insert(int index, int val)
 	{
-// TODO (jaca#1#): inert item
-	    //todo
+		if(is_Empty())
+		{
+			if(index==0)
+				tail = head = new Node2{val};
+			return;
+		}
+		if(index == 0)
+		{
+			insert_beg(val);
+			return;
+		}
+
+		Node2* temp = head;
+		while(temp->next != nullptr && --index)
+		{
+			temp = temp->next;
+		}
+		temp->next = new Node2{val, temp->next, temp};
+		if(temp == tail) tail = temp->next; //jesli dodano na koncu zaktualizuj tail.
 	}
 
 	int DL_List::at(int index)
@@ -96,7 +113,11 @@
             std::cout<<"lista pusta"<<std::endl;
             return -1;
         }
-
+        if(index<0)
+        {
+        	std::cout<<"element o ujemnym indeksie nie istnieje"<<std::endl;
+        	return -1;
+        }
         Node2* temp=head;
         while(index--)
         {

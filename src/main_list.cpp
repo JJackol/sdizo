@@ -92,11 +92,13 @@ int main_list(int argc, char** argv)
     lista.print();
     std::cout<<std::endl;
 
-//    lista.insert(4, 777);
-//    std::cout<<"insert at 4 	*******************************************************"<<std::endl;
-//	indexes.print();
-//    lista.print();
-//    std::cout<<std::endl;
+    lista.insert(4, 777);
+    lista.insert(12, 888);
+    lista.insert(12, 999);
+    std::cout<<"insert at 4, 12,12	*******************************************************"<<std::endl;
+	indexes.print();
+    lista.print();
+    std::cout<<std::endl;
 //
     std::cout<<"remove at ind 7 and 2	******************************************************"<<std::endl;
     lista.remove_at(7);
@@ -111,12 +113,12 @@ int main_list(int argc, char** argv)
 //    std::cout<<std::endl;
 //	indexes.print();
 //    lista.print();
-//    std::cout<<"at 10     : "<<lista.at(10)<<std::endl;
-//    std::cout<<"at 9     : "<<lista.at(9)<<std::endl;
-//    std::cout<<"at 8     : "<<lista.at(8)<<std::endl;
-//    std::cout<<"at 0     : "<<lista.at(0)<<std::endl;
-//    std::cout<<"at 1     : "<<lista.at(1)<<std::endl;
-//
+    std::cout<<"at 10     : "<<lista.at(10)<<std::endl;
+    std::cout<<"at 9     : "<<lista.at(9)<<std::endl;
+    std::cout<<"at 8     : "<<lista.at(8)<<std::endl;
+    std::cout<<"at 0     : "<<lista.at(0)<<std::endl;
+    std::cout<<"at 1     : "<<lista.at(1)<<std::endl;
+
 	std::cout<<"find 10     : "<<lista.find(10)<<std::endl;
 	std::cout<<"find 0     : "<<lista.find(0)<<std::endl;
 	std::cout<<"find -1     : "<<lista.find(-1)<<std::endl;
