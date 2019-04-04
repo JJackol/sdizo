@@ -121,7 +121,7 @@
 			aloc_size *= 2;
 			int* new_tab = new int[aloc_size];
 			copy(tab, new_tab, size);
-			delete tab;
+			delete[] tab;
 			tab = new_tab;
 		}
 		int p, i;
@@ -230,7 +230,7 @@
 	}
 	void Max_Heap::clear()
 	{
-		delete tab;
+		delete[] tab;
 		aloc_size = 1024;
 		tab = new int [aloc_size];
 		size = 0;

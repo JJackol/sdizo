@@ -4,6 +4,8 @@
 #include "main_heap.h"
 #include "DArray.h"
 #include "menu.h"
+#include "Timer.h"
+#include "testy.h"
 
 #include <ctime>
 #include <cstdlib>
@@ -15,9 +17,18 @@ int main(int argc, char** argv)
     srand(time(NULL));
 	//main_heap(argc, argv);
 
-//	main_list(argc, argv);
+	test_heap_rosnace();
+//	test_heap_malejace();
+//	test_list_random();
+//	test_array_rand();
+//	test_array_zera();
+//	test_list_random();
+//	test_heap_rand();
+//	test_heap_zera();
+	//test_array();
 
-	main_array(argc, argv);
+//	main_list(argc, argv);
+//	main_array(argc, argv);
 //	DArray tab;
 //	tab.load_from_file("numbers.txt");
 //	tab.generate_arr();
@@ -26,7 +37,7 @@ int main(int argc, char** argv)
     cout << argv[0] << endl;
     cout << "Program: Struktury" << endl;
 
-    menu();
+//    menu();
 
 
     return 0;

@@ -155,13 +155,23 @@
 	{
 		if(is_Empty())
 			return;
+
 		size--;
+		int* new_tab= new int [size];
+		copy(tab, new_tab, size);
+		delete[] tab;
+		tab = new_tab;
 	}
 	void DArray::remove_beg()
 	{
 		if(is_Empty())
 			return;
-		copy(tab+1, tab, --size);
+
+		size--;
+		int* new_tab= new int [size];
+		copy(tab+1, new_tab, size);
+		delete[] tab;
+		tab = new_tab;
 	}
 
 	void DArray::clear()

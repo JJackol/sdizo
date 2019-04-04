@@ -1,7 +1,37 @@
 #include <iostream>
+#include <iomanip>
 #include "DL_List.h"
 #include "main_list.h"
+#include "Timer.h"
 
+void test_timer()
+{
+
+	std::cout <<std::fixed<<std::setprecision (10) << (double) std::chrono::high_resolution_clock::period::num / std::chrono::high_resolution_clock::period::den;
+	std::cout <<std::endl;
+	using namespace std::chrono;
+	high_resolution_clock::time_point t1;
+	high_resolution_clock::time_point t2;
+
+	for(int i = 0; i<10 ; i++)
+	{
+		t1 = high_resolution_clock::now();
+
+		//mierzona operacja
+
+		t2 = high_resolution_clock::now();
+		duration<double> pomiar = duration_cast<duration<double>>(t2 - t1);
+		std::cout <<std::fixed<<std::setprecision (12) << pomiar.count() << " seconds.";
+		std::cout <<std::endl;
+
+	}
+
+
+
+}
+
+
+// testuje tablice
 int main_list(int argc, char** argv)
 {
 	std::cout << std::endl<< std::endl
