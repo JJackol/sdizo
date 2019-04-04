@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cassert>
 #include <iomanip>
+#include <fstream>
+#include <cstdlib>
 
 	DL_List::DL_List()
 	{
@@ -19,6 +21,33 @@
                 head = temp;
             }
 
+	}
+	void DL_List::load_from_file(std::string file_name)
+	{
+		clear();
+		std::fstream file;
+		std::string input;
+		int x,s;
+		file.open( file_name , std::ios::in );
+		if( file.good() == true )
+		{
+		    file >> s;
+			while(!file.eof() && s--)
+			{
+				file>>input;
+				x=stoi(input);
+				this->insert_end(x);
+			}
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
+	}
+
+	void DL_List::generate_list(unsigned int _size, int _max, int _min)
+	{
+		_max = _max - _min + 1;
+		for (unsigned int i=0; i<_size; i++)
+			insert_end( rand() % _max - _min);
 	}
 
 	void DL_List::print()
@@ -103,7 +132,9 @@
 			temp = temp->next;
 		}
 		temp->next = new Node2{val, temp->next, temp};
+
 		if(temp == tail) tail = temp->next; //jesli dodano na koncu zaktualizuj tail.
+		else temp->next->next->prev = temp->next;
 	}
 
 	int DL_List::at(int index)

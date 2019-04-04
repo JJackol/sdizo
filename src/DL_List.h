@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 struct Node2
 {
@@ -20,6 +21,9 @@ class DL_List
 	DL_List();
 	DL_List(DL_List & L);
 	~DL_List();
+
+	void load_from_file(std::string file_name);
+	void generate_list(unsigned int _size = 16, int _max=999, int _min=0);
 
 	void print();
 	void print_rev();

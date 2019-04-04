@@ -40,19 +40,16 @@
 				x=stoi(input);
 				this->insert_end(x);
 			}
-
 			//tu operacje na pliku (zapis/odczyt)
 			file.close();
 		}
 	}
 
-	void SL_List::generate_arr(unsigned int _size)
+	void SL_List::generate_list(unsigned int _size, int _max, int _min)
 	{
-		clear();
-
-		for(unsigned int i = 0; i<_size; i++)
-			insert_end(rand()%1000);
-
+		_max = _max - _min + 1;
+		for (unsigned int i=0; i<_size; i++)
+			insert_end( rand() % _max - _min);
 	}
 
 	void SL_List::print()

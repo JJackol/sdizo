@@ -59,9 +59,8 @@
 		}
 	}
 
-	void DArray::generate_arr(unsigned int _size)
+	void DArray::generate_arr(unsigned int _size, int _max, int _min)
 	{
-		clear();
 		for(unsigned int i = 0; i<_size; i++)
 			insert_end(rand()%1000);
 

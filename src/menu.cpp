@@ -3,6 +3,7 @@
 #include<string>
 #include<iostream>
 #include "SL_List.h"
+#include "DL_List.h"
 #include "DArray.h"
 #include "Max_Heap.h"
 
@@ -108,6 +109,7 @@ void menu_table()
 			cout << "Podaj ilość elementów tablicy:";
 			cin >> value;
 
+			myTab.clear();
 			myTab.generate_arr(value);
 
 			myTab.print();
@@ -131,7 +133,7 @@ void menu_list()
 	string fileName;
 	int index, value;
 
-	SL_List lista;
+	DL_List lista;
 
 	do{
 		displayMenu("--- LISTA ---");
@@ -143,6 +145,7 @@ void menu_list()
 			cin >> fileName;
 			lista.load_from_file(fileName);
 			lista.print();
+			lista.print_rev();
 			break;
 
 		case '2': //tutaj usuwanie elementu z tablicy
@@ -150,6 +153,7 @@ void menu_list()
 			cin >> value;
 			lista.remove_val(value);
 			lista.print();
+			lista.print_rev();
 			break;
 
 		case '3': //tutaj dodawanie elementu do tablicy
@@ -160,28 +164,32 @@ void menu_list()
 
 			lista.insert(index,value);
 			lista.print();
+			lista.print_rev();
 			break;
 
 		case '4': //tutaj znajdowanie elemetu w tablicy
 			cout << " podaj waertość:";
 			cin >> value;
 			if (lista.find(value) >= 0 )
-				cout << "poadana wartośc jest w tablicy";
+				cout << "poadana wartośc jest na liscie";
 			else
-				cout << "poadanej wartości NIE ma w tablicy";
+				cout << "poadanej wartości NIE ma na liscie";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
-			cout << "Podaj ilość elementów tablicy:";
+			cout << "Podaj ilość elementów listy:";
 			cin >> value;
 
-			lista.generate_arr(value);
+			lista.clear();
+			lista.generate_list(value);
 
 			lista.print();
+			lista.print_rev();
 			break;
 
 		case '6':  //tutaj wyświetlanie tablicy
 			lista.print();
+			lista.print_rev();
 			break;
 
 		case '7': //tutaj nasza funkcja do eksperymentów (pomiary czasów i generowanie daneych) - nie będzie testowana przez prowadzącego
@@ -214,14 +222,14 @@ void menu_heap()
 			break;
 
 		case '2': //tutaj usuwanie elementu z kopca
-			cout << " podaj index:";
-			cin >> index;
-			//kopiec.remove_at(index);
+			cout << " podaj klucz:";
+			cin >> value;
+			kopiec.remove_key(value);
 			kopiec.print();
 			break;
 
 		case '3': //tutaj dodawanie elementu do kopca
-			cout << " podaj waertość:";
+			cout << " podaj wartosc:";
 			cin >> value;
 
 			kopiec.push(value);
@@ -229,19 +237,20 @@ void menu_heap()
 			break;
 
 		case '4': //tutaj znajdowanie elemetu w tablicy
-			cout << " podaj waertość:";
+			cout << " podaj wartosc:";
 			cin >> value;
-//			if (kopiec.find(value) >= 0 )
-//				cout << "poadana wartośc jest w tablicy";
-//			else
-//				cout << "poadanej wartości NIE ma w tablicy";
+			if (kopiec.search_for(value))
+				cout << "podana wartosc jest w kopcu";
+			else
+				cout << "podanej wartości NIE ma w kopcu";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
-			cout << "Podaj ilość elementów tablicy:";
+			cout << "Podaj ilość elementów kopca:";
 			cin >> value;
 
-			//kopiec.generate_arr(value);
+			kopiec.clear();
+			kopiec.generate_heap(value);
 
 			kopiec.print();
 			break;
@@ -252,6 +261,10 @@ void menu_heap()
 
 		case '7': //tutaj nasza funkcja do eksperymentów (pomiary czasów i generowanie daneych) - nie będzie testowana przez prowadzącego
 			      // można sobie tu dodać własne case'y
+			break;
+		case '8': //pop_root
+			kopiec.pop_root();
+			kopiec.print();
 			break;
 		}
 

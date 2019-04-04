@@ -13,7 +13,7 @@ class DArray
 		DArray(const DArray& other);
 		DArray& operator=(const DArray& other);
 		void load_from_file(std::string file_name);
-		void generate_arr(unsigned int _size=16);
+		void generate_arr(unsigned int _size=16, int _max=999, int _min=0);
 
 		void print();
 		bool is_Empty();

@@ -15,9 +15,9 @@ int main(int argc, char** argv)
     srand(time(NULL));
 	//main_heap(argc, argv);
 
-	main_list(argc, argv);
+//	main_list(argc, argv);
 
-//	main_array(argc, argv);
+	main_array(argc, argv);
 //	DArray tab;
 //	tab.load_from_file("numbers.txt");
 //	tab.generate_arr();
@@ -25,6 +25,7 @@ int main(int argc, char** argv)
 
     cout << argv[0] << endl;
     cout << "Program: Struktury" << endl;
+
     //menu();
 
 
