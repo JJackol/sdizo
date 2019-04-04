@@ -64,13 +64,6 @@
 	    }
 	    std::cout<<std::endl;
 
-//	    for (int i = 0; i<my_size; i++)
-//        {
-//            std::cout<< temp->val << " ";
-//            temp = temp->next;
-//        }
-//        std::cout<<std::endl;
-
 	}
 
 	bool SL_List::is_Empty()

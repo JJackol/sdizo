@@ -6,13 +6,14 @@
 #include <cstdlib>
 
 
-	DArray::DArray(unsigned int _aloc_size) : aloc_size(_aloc_size), size(0)
+	DArray::DArray(unsigned int _size) :  size(_size)
 	{
-		unsigned int i=1;
-		while(i<aloc_size)
-			i*=2;
-		aloc_size=i;
-		tab = new int[aloc_size];
+		tab = new int [_size];
+//		unsigned int i=1;
+//		while(i<aloc_size)
+//			i*=2;
+//		aloc_size=i;
+//		tab = new int[aloc_size];
 	}
 
 	DArray::~DArray()
@@ -20,9 +21,9 @@
 		delete[] tab;
 	}
 
-	DArray::DArray(const DArray& other) : aloc_size(other.aloc_size), size(other.size)
+	DArray::DArray(const DArray& other) : size(other.size)
 	{
-		tab = new int[aloc_size];
+		tab = new int[size];
 		copy(other.tab, tab, size);
 	}
 
@@ -30,9 +31,8 @@
 	{
 		if (this == &other) return *this; // handle self assignment
 
-		aloc_size = other.aloc_size;
 		size = other.size;
-		tab = new int[aloc_size];
+		tab = new int[size];
 		copy(other.tab, tab, size);
 
 		return *this;
@@ -80,37 +80,24 @@
 	}
 	void DArray::insert_end(int val)
 	{
-		if(size < aloc_size){
-			tab[size] = val;
-			size++;
-		}
-		else
-		{
-			int* new_tab = new int[aloc_size = 2*aloc_size];
-			copy(tab, new_tab, size);
-			delete[] tab;
-			tab = new_tab;
-			tab[size] = val;
-			size++;
-		}
+		int* new_tab = new int[size+1];
+		copy(tab, new_tab, size);
+		delete[] tab;
+		tab = new_tab;
+		tab[size] = val;
+		size++;
+
 	}
 	void DArray::insert_beg(int val)
 	{
-		if(size < aloc_size) // jeśli zmieści się w zaalokowanej pamięci
-		{
-			copy_inv(tab, tab+1, size); //przesuń elementy
-			tab[0] = val;
-			size++;
-		}
-		else // realokacja
-		{
-			int* new_tab = new int[aloc_size = 2*aloc_size];
-			copy_inv(tab, new_tab+1, size);
-			delete[] tab;
-			tab = new_tab;
-			tab[0] = val;
-			size++;
-		}
+
+		int* new_tab = new int[size+1];
+		copy_inv(tab, new_tab+1, size);
+		delete[] tab;
+		tab = new_tab;
+		tab[0] = val;
+		size++;
+
 	}
 	void DArray::insert(unsigned int index, int val)
 	{
@@ -120,22 +107,14 @@
 			return;
 		}
 
-		if(size < aloc_size)
-		{
-			copy_inv(tab+index, tab+index+1, size); //rozsuń tablicę
-			tab[index] = val;
-			size++;
-		}
-		else
-		{
-			int* new_tab = new int[aloc_size = 2*aloc_size];
-			copy(tab, new_tab, index);
-			copy(tab+index, new_tab+index+1, size-index);
-			delete[] tab;
-			tab = new_tab;
-			tab[index] = val;
-			size++;
-		}
+		int* new_tab = new int[size+1];
+		copy(tab, new_tab, index);
+		copy(tab+index, new_tab+index+1, size-index);
+		delete[] tab;
+		tab = new_tab;
+		tab[index] = val;
+		size++;
+
 	}
 
 	int DArray::at(unsigned int index)
@@ -188,9 +167,8 @@
 	void DArray::clear()
 	{
 		delete[] tab;
-		aloc_size=1;
-		tab= new int[aloc_size];
 		size=0;
+		tab= new int[size];
 	}
 
 	//pomocnicze f.

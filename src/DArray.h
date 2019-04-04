@@ -4,11 +4,10 @@
 class DArray
 {
 		int* tab = nullptr;
-		unsigned int aloc_size;
 		unsigned int size;
 
 	public:
-		DArray(unsigned int _aloc_size = 0);
+		DArray(unsigned int _size = 0);
 		virtual ~DArray();
 		DArray(const DArray& other);
 		DArray& operator=(const DArray& other);

@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     cout << argv[0] << endl;
     cout << "Program: Struktury" << endl;
 
-    //menu();
+    menu();
 
 
     return 0;

@@ -102,7 +102,11 @@ int main_array(int argc, char** argv)
     DArray tablica2;
     std::cout<<"find 132 on empty list : "<<tablica2.find(132)<<std::endl;
 
+	std::cout<<"operator = 	******************************************************"<<std::endl;
+	DArray nowa = tablica;
 
+	indexes.print();
+    nowa.print();
 
 	//std::cout<<argc<< std::endl;
 	return 0;
