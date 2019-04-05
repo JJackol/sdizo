@@ -1,0 +1,280 @@
+\documentclass[polish, 11pt]{article}
+    
+\usepackage[a4paper, margin=25mm]{geometry}
+\usepackage{babel,polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs,multirow,multicol}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\graphicspath{{img/}}
+
+\usepackage{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+%\newcommand{\results}[3][1.0]{
+%    \includegraphics[width=#1\textwidth]{#2}
+%    \captionof{figure}{#3\label{fig:#2}}
+%}
+
+\captionsetup[figure]{name=Rys.}
+
+\newcommand{\obrazek}[3][1.0]{
+    \includegraphics[width=#1\textwidth]{#2}
+    \captionof{figure}{#3\label{fig:#2}}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\scshape\LARGE  Struktury danych i złożoność obliczeniowa \\ projekt \par}
+    \vspace{1cm}
+    {\scshape\Large Zadanie 1.\par}
+    \vspace{2cm}
+ 
+   
+    {\itshape\Large Jacek Czewonka  --- 241373\/\par}
+    \vfill
+    Prowadzący:\par
+    dr inż. Jarosław Mierzwa
+
+    \vfill
+
+    {\large Wrocław, \today\par}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Wstęp}
+	Celem projektu jest zaimplementowanie podstawowych struktur danych. Zadanie zostało zaprogramowane w języku c++ w wersji obiektowej. Program umożliwia wykonywanie operacji na strukturach.
+	\par Struktury:
+\begin{itemize}
+	    			\item Tablica dynamiczna
+			    	\item Lista podwójnie wiązana
+			    	\item Kopiec(Sterta)
+\end{itemize}    	
+\subsection{Założenia techniczne}
+	Podstawowym typem danych jest 32 bitowa liczba ze znakiem (int). Do kompilacji kodu użyto kopilator g++ (gcc) oraz linker ld. Użyty standard języka to C++11.	Programy kompilowane, uruchamiane i testowane pod systemem linux.
+\section{Teoria}
+ 	\subsection{Teoretyczne  złożoności}
+ 	Złożoność obliczeniową dzieli się na złożoność czasową i pamięciową. W zadaniu rozpatrzono i zmierzono  złożoność czasową. Złożoność pamięciowa jest w tym wypadku bezpośrednio związana z wielkością struktury. Do oceny algorytmów najczęściej używa się notacji dużego O(f(n)). Oznacza ona, że funkcja złożoności algorytmu jest od góry ograniczona przez f dla prawie wszystkich argumentów.
+ 	
+    \subsubsection{Tablica i Lista}
+    	Tablicę i listę rozpatrywać można w podobny sposób ponieważ obie struktury są liniowe oraz umożliwiają wykonanie podobnych operacji. W przypadku tablicy nie implementowano amortyzacji kosztów. Rozpatrzone są pesymistyczne przypadki.
+    	\par
+    	
+    \hspace{400pt}
+    \begin{center}
+    
+    \begin{tabular}{c|c|c}
+    Operacja  & Tablica  & Lista dwu-kierunkowa  \\
+    \hline
+    dodawanie na początku & O(n) & O(1)  \\
+    dodawanie na końcu		 & O(n)  & O(1)  \\
+    dodawanie w środek 	 	 & O(n)  & O(n) \\
+    \hline
+    usuwanie z początku		 & O(n)	& O(1)\\
+    usuwanie z końca 			 & O(n)  &  O(1)\\
+    usuwanie ze środka 		 & O(n)  &  O(n) \\
+    \hline
+    dostęp indeksowy			 & O(1)	& O(n)	   \\ 				
+    szukanie wartości 			 & O(n)  &  O(n)  \\
+	\end{tabular}
+ \end{center}
+   \subsubsection{Kopiec}
+    	W przyjętej implementacji kopca pamięć jest realokowana z nadmiarem w celu amortyzacji kosztu czasu. Rezerwowany jest dwukrotny nadmiar pamięci. Zysk czasu kosztem pamięci.
+    	\par
+    	    \hspace{400pt}
+    	    \begin{center}
+    	    
+    	    \begin{tabular}{c|c}
+   		 Operacja  & Kopiec  \\    
+   		 \hline
+  		  dodanie wartości			 & O( log(n))   \\ 
+  		  usunięcie korzenia			 & O( log(n))   \\ 				
+  		  usunięcie klucza		 & O( n log(n))   \\ 				
+   		 szukanie wartości 			 & O(n) \\
+    
+			\end{tabular}
+	   \end{center}
+		
+	\subsection{Tabele}
+	    
+	    
+	    
+	\section{Eksperyment}
+		\subsection{Opis}
+			W celu przebadania czasu trwania operacji użyto standardowej biblioteki c++ <chrono>. Biblioteka ta w standardzie c++11 udostępnia zegar wysokiej rozdzielczości. Sprawdzono czas dodawania losowych
+			\par
+Metoda wykonywanie pomiaru:
+\begin{lstlisting}[language=C++,numbers=left]
+	std::chrono::high_resolution_clock::time_point t1;
+	std::chrono::high_resolution_clock::time_point t2;
+
+	t1 = std::chrono::high_resolution_clock::now();
+
+	//mierzona operacja
+
+	t2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> pomiar =
+			 duration_cast<duration<double>>(t2 - t1);
+
+\end{lstlisting}
+\par
+Sprawdzono czas dodawania losowych liczb do struktur. Początkowo sprawdzono czy jest różnica między dodawanie konkretnych wartości takich jak: 0, -1 (binarnie same jedynki 0xffffff). Czasy bardzo zbliżone do siebie. W przypadku kopca rozpatrzono również dodawanie, a następnie usuwanie ciągów malejących oraz rosnących.
+\paragraph{}
+Nie mierzone były pojedyncze operacje lecz wiele operacji pod rząd (przykładowo 1000). 
+
+
+\begin{lstlisting}[language=C++,numbers=left]
+	for(int j = 1000; j>0 ; j--)
+	{
+		t1 = high_resolution_clock::now();
+		for(int i=0; i<1000; i++)
+			tablica.remove_end();
+			
+		t2 = high_resolution_clock::now();
+		duration<double> pomiar = 
+				duration_cast<duration<double>>(t2 - t1);
+		out_file<<(j)*1000<<","<<std::fixed<<std::setprecision (12)
+			<< pomiar.count()<<std::endl;
+	}
+\end{lstlisting}
+
+\paragraph{}
+Wyniki były zapisywane do pliku .csv (coma-separated values)
+\paragraph{}
+Wielkości badanych struktur wahają się między 10.000 a 50.000.000 elementów zależnie od eksperymentu.
+
+		\subsection{Cele}
+			Badanie skupia się na pomiarze czasu dodawania i usuwania elementów. Inne operacje nie wymagają dynamicznej alokacji i kopiowania pamięci i z tego powodu wykonują się znacznie szybciej. Utrudnia to wykonanie wiarygodnego pomiaru.
+			
+		\subsection{Obserwacje}	
+		\paragraph{}
+		W przypadku tablic operacje zależą liniowo od aktualnego rozmiaru.	Wynika to konieczności kopiowania tabli przy każdej operacji(założenie by tablica zajmowała minimum pamięci). Spodziewany wynik.
+		\paragraph{}
+		Lista ze względu na swoje właściwości ( niejednorodne rozmieszczenie w pamięci ) posiada czasy operacji niezależne od aktualnego rozmiaru. Wypełnienie całej dostępnej pamięci operacyjnej zajęłoby kilka sekund.	Również spodziewany wynik.
+		\par
+		Dodanie 50.000.000 elementów do listy zajmuje średnio 2.106700328 sekundy. Struktura przechowująca jeden węzeł ma 24 bajty. Pamięć zużyta do takiej operacji to ok. 1,25 GB.
+		
+		\paragraph{}
+		%Kopiec
+		
+	\subsection{Wnioski}	
+		\paragraph{Tablica - }
+		W przypadku tablic operacje zależą liniowo od aktualnego rozmiaru.	Wynika to konieczności kopiowania tabli przy każdej operacji(założenie by tablica zajmowała minimum pamięci). Spodziewany wynik.
+		\paragraph{Lista}
+		 ze względu na swoje właściwości ( niejednorodne rozmieszczenie w pamięci ) posiada czasy operacji niezależne od aktualnego rozmiaru. Wypełnienie całej dostępnej pamięci operacyjnej zajęłoby kilka sekund.	Również spodziewany wynik.
+		 \par
+		 W przypadku listy na wykresie widać pewne zaszumienie. Prawdopodobnie ma na nie wpływ przypadkowe obciążenie procesora lub pamięci(którego starano si unikać). Na pozostałych strykturach również występuje ów szum ale ze względu na stałą zależność ( O(1) ) operacji na liście, wygląda na bardziej chaotyczny.
+		\paragraph{Kopiec}
+		przy dodawaniu elementów rosnących zachowuje się zgodnie z przewidywaniami. Przy dodawaniu  losowych oraz malejących trudno zauważyć jakąś tendencję. 
+		\par
+		Przy usuwaniu elementów również można dostrzec logarytmiczną krzywą zależności od rozmiaru. 
+		\par
+		Usuwanie elementów dodanych malejąco wykazuje pewne anomalie(możliwe, że spowodowane innym(niezależnym) obciążeniem komputera).
+		\par 
+		Na niektórych wykresach ucięto (''szpilki'') duże wartości wykraczające poza ogólną tendencję. Wyraźnie większe wartości wynikają z realokacji pamięci. Po przybliżeniu wykresu lepiej widać zależności.
+		
+		
+		
+		\section{Wykresy}				
+		\subsubsection{Tablica}		
+		
+	\begin{changemargin}{-1.5cm}{-1.5cm}
+	
+	\begin{minipage}[t]{.55\textwidth}
+     %   	\begin{center}
+				\obrazek[1.1]{../tab/tab_add_r_1000_el.png}{Tablica - dodawanie  losowych elementów}
+	%		\end{center}
+    \end{minipage}%
+    \vspace{1pt}
+	\begin{minipage}[t]{.55\textwidth}
+      %  	\begin{center}
+				\obrazek[1.1]{../tab/tab_rem_r_1000_el.png}{Tablica - Usuwanie }
+		%	\end{center}
+    \end{minipage}%
+    
+    \hspace{1cm}
+    
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../tab/tab_test_1000el.png}{Tablica - dodawanie  losowych elementów}
+    \end{minipage}%
+    %\vspace{0cm}
+    \begin{minipage}[t]{.55\textwidth}
+       \obrazek[1.1]{../tab/tab_add_zera_1000_el.png}{Tablica - dodawanie zer}
+    \end{minipage}%
+    
+    \subsubsection{Lista}		
+    \vspace{1cm}
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../list/list_add_r_1000_el.png}{Lista - dodawanie losowych}
+    \end{minipage}%
+    \begin{minipage}[t]{.55\textwidth}
+       \obrazek[1.1]{../list/list_rem_r_1000_el.png}{Lista - usuwanie}
+    \end{minipage}%
+    
+    %    \vspace{0cm}
+    \begin{minipage}[t]{.5\textwidth}
+        \obrazek[1.1]{../list/list_1000,000.png}{Lista - dodawanie po 1.000.000 losowychelementów}
+    \end{minipage}%
+    \begin{minipage}[t]{.5\textwidth}
+      % \obrazek[1.1]{../list/list_rem_r_1000_el.png}{Tablica - dodawanie zer}
+    \end{minipage}%
+		
+		
+		\subsubsection{Kopiec}		
+    \vspace{1cm}
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../heap/heap_rand.png}{Kopiec - dodawanie losowych }
+    \end{minipage}%
+    \begin{minipage}[t]{.55\textwidth}
+       \obrazek[1.1]{../heap/heap_rem_rand_100,000_el.png}{Kopiec - usuwanie losowych}
+    \end{minipage}%
+    
+        \vspace{1cm}
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../heap/heap_ros.png}{Kpiec - dodawanie rosnących liczb}
+    \end{minipage}%
+    \begin{minipage}[t]{.55\textwidth}
+       \obrazek[1.1]{../heap/heap_rem_ros_100,000_el.png}{Kopiec - usuwanie el. dodanych rosnąco}
+    \end{minipage}%
+		
+		 \vspace{1cm}
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../heap/heap_mal.png}{Kpiec - dodawanie malejących liczb}
+    \end{minipage}%
+    \begin{minipage}[t]{.55\textwidth}
+       \obrazek[1.1]{../heap/heap_rem_mal_100,000_el.png}{Kopiec - usuwanie el. dodanych malejąco}
+    \end{minipage}%
+    
+		
+				
+			 \vspace{1cm}
+    \begin{minipage}[t]{.55\textwidth}
+        \obrazek[1.1]{../heap/szpilki.png}{Kopiec - widzoczna realokacja}
+    \end{minipage}%
+
+	
+	
+		    
+		    \vspace{0.5cm}
+
+\end{changemargin}
+
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass[polish, 11pt]{article}
+    
+\usepackage[a4paper, margin=25mm]{geometry}
+\usepackage{babel,polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs,multirow,multicol}
+
+\usepackage{graphicx}
+\graphicspath{{img/}}
+
+\usepackage{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+
+%\newcommand{\results}[3][1.0]{
+%    \includegraphics[width=#1\textwidth]{#2}
+%    \captionof{figure}{#3\label{fig:#2}}
+%}
+
+\captionsetup[figure]{name=Rys.}
+
+\newcommand{\obrazek}[3][1.0]{
+    \includegraphics[width=#1\textwidth]{#2}
+    \captionof{figure}{#3\label{fig:#2}}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\scshape\LARGE  Bazy Danych \\ projekt \par}
+    \vspace{1cm}
+    {\scshape\Large ,,System rankingowy dla sportu drużynowego''\par}
+    \vspace{2cm}
+ 
+    Grupa 08\par
+    {\itshape\Large Jacek Czewonka (lider) --- 241373\/\par}
+    {\itshape\Large Konrad Lewandowski --- 241326\/\par}
+    \vfill
+    Prowadzący:\par
+    mgr inż. Karol Puchała
+
+    \vfill
+
+    {\large Wrocław, \today\par}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Wstęp}
+	Celem projektu jest zaprojektowanie bazy danych dla systemu rankingowego. Obiektem modelowanym będą rozgrywki sportu zespołowego Ultimate Frisbee.
+
+\section{Model}
+    \subsection{Opis świata rzeczywistego }
+	    Modelowanym  obiektem są wyniki rozgrywek Ultimate Frisbee. W przeciągu lat wykształciło się specyficzne środowisko graczy. Mecze i turnieje rozgrywane są w trzech kategoriach: męskiej, kobiecej i mieszanej. Kategoria mieszana jest najpopularniejszą, lecz pozostałe kategorie silnie się rozwijają. W sezonie letnim gra się na trawie 7 na 7, w sezonie zimowym na hali 5 na 5.
+		 \subsection{Model bazy danych }
+		 	Relacyjna baza danych przedstawia zależności miedzy: zawodnikami,  drużynami, meczami oraz turniejami.
+
+	\subsection{Tabele}
+	    
+	    \begin{itemize}
+	    
+	    	\item 	 Zawodnicy:
+	    		\begin{itemize}
+	    			\item ID\_zawodnika (Primary Key)
+			    	\item Imie
+			    	\item Nazwisko
+			    	\item Wiek
+			    	\item Płeć
+			    	\item ID\_drużyny (Forein Key)
+	    		\end{itemize}
+	    		
+	    	\item 	   Drużyny:
+	    		\begin{itemize}
+			    	\item ID\_drużyny (Primary Key)
+					\item nazwa\_drużyny
+					\item skrót
+					\item kategoria
+					\item miasto\_pochodzenia
+				 \end{itemize}
+				 
+	    	\item	Turnieje:
+	    		\begin{itemize}
+			    	\item ID\_turnieju (Primary Key)
+			    	\item nazwa\_turnirju
+			    	\item kategoria
+			    	\item data
+			    	\item uczestnicy(teams) (Forein Key)
+			    	\item ranga
+			    \end{itemize}
+
+	    	\item	Mecze:
+	    		\begin{itemize}
+			    	\item ID\_meczu (Primary Key)
+			    	\item ID\_turnieju (Forein Key)
+			    	\item team\_A (Forein Key)
+			    	\item team\_B (Forein Key)
+			    	\item data
+			    	\item wynik
+			    \end{itemize}
+			    
+	    	\item	Punkty:
+	    		\begin{itemize}
+			    	\item ID\_punktu (Primary Key)
+			    	\item czas
+			    	\item wynik (Forein Key)
+			    	\item asysta (Forein Key)
+			    	\item punktujący
+			    	\item ID\_meczu (Forein Key)
+			    \end{itemize}
+			    	  
+	    \end{itemize}
+	    
+	\section{Opis funkcjonalny}
+	
+		\subsection{Opis słowny}
+			
+				\subparagraph{ Przeglądanie zawartości bazy.\\} 
+					System będzie pozwalał każdej zainteresowanej osobie na wgląd do zawartości bazy. Kluczowym elementem jest transparentność systemu. Jedynie dane poufne dotyczące zawodników będą ukryte.
+				\subparagraph{Edytowanie drużyn. \\}
+					Managerowie drużyn dostaną możliwość wprowadzania zmian w składach oraz reszcie danych swoich zespołów.
+				\subparagraph{Organizacja turniejów \\}
+					Użytkownicy ze statusem Manager Turnieju będą mogli tworzyć turnieje, modyfikować wszystkie dane w zakresie zgłoszonego turnieju, a następnie je udostępniać.
+				\subparagraph{Administrowanie bazą \\}
+					Administrator ma nieograniczony dostęp do bazy oraz możliwość edytowanie jej. Po każdym sezonie letnim i zimowym baza powinna być archiwizowana. W przypadku konfliktów (np. dwie osoby podające się za managerów tej samej drużyny wprowadzą sprzeczne dane) administrator ingeruje w celu zachowania spójności danych.
+			
+		
+		
+		\subsection{Use case diagram}
+			\begin{center}
+				\obrazek[0.9]{BD-UseCase2popr.png}{use case diagram}
+			\end{center}
+		
+
+
+
+		    
+		    \vspace{0.5cm}
+
+
+
+\end{document}

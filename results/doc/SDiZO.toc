@@ -1,0 +1,26 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}% 
+\contentsline {subsection}{\numberline {1.1}Za\IeC {\l }o\IeC {\.z}enia techniczne}{2}% 
+\contentsline {section}{\numberline {2}Teoria}{2}% 
+\contentsline {subsection}{\numberline {2.1}Teoretyczne z\IeC {\l }o\IeC {\.z}ono\IeC {\'s}ci}{2}% 
+\contentsline {subsubsection}{\numberline {2.1.1}Tablica i Lista}{2}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Kopiec}{2}% 
+\contentsline {subsection}{\numberline {2.2}Tabele}{3}% 
+\contentsline {section}{\numberline {3}Eksperyment}{3}% 
+\contentsline {subsection}{\numberline {3.1}Opis}{3}% 
+\contentsline {paragraph}{}{3}% 
+\contentsline {paragraph}{}{3}% 
+\contentsline {paragraph}{}{3}% 
+\contentsline {subsection}{\numberline {3.2}Cele}{3}% 
+\contentsline {subsection}{\numberline {3.3}Obserwacje}{4}% 
+\contentsline {paragraph}{}{4}% 
+\contentsline {paragraph}{}{4}% 
+\contentsline {paragraph}{}{4}% 
+\contentsline {subsection}{\numberline {3.4}Wnioski}{4}% 
+\contentsline {paragraph}{Tablica - }{4}% 
+\contentsline {paragraph}{Lista}{4}% 
+\contentsline {paragraph}{Kopiec}{4}% 
+\contentsline {section}{\numberline {4}Wykresy}{5}% 
+\contentsline {subsubsection}{\numberline {4.0.1}Tablica}{5}% 
+\contentsline {subsubsection}{\numberline {4.0.2}Lista}{6}% 
+\contentsline {subsubsection}{\numberline {4.0.3}Kopiec}{7}% 

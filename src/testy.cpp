@@ -259,7 +259,7 @@ void test_heap_malejace()
 
 void test_heap_rosnace()
 {
-	std::ofstream out_file( "results/heap/heap_add_ros_100,000_el.txt", std::ios::out);
+	std::ofstream out_file( "results/heap/heap_add_rand_100,000_el.txt", std::ios::out);
 	if( !out_file.good())
 		return;
 
@@ -267,13 +267,13 @@ void test_heap_rosnace()
 
 	high_resolution_clock::time_point t1;
 	high_resolution_clock::time_point t2;
-	int val = 0x80000000;
+	//int val = 0x80000000;
 	for(int j = 0; j<1000 ; j++)
 	{
 		t1 = high_resolution_clock::now();
 		for(int i=0; i<100000; i++)
 		{
-			heap.push( val++ );
+			heap.push( rand() );
 		}
 		//mierzona operacja
 		t2 = high_resolution_clock::now();
@@ -282,7 +282,7 @@ void test_heap_rosnace()
 	}
 	out_file.close();
 
-	out_file.open("results/heap/heap_rem_ros_100,000_el.txt", std::ios::out);
+	out_file.open("results/heap/heap_rem_rand_100,000_el.txt", std::ios::out);
 	if( !out_file.good())
 		return;
 		for(int j = 1000; j>0 ; j--)
@@ -301,16 +301,17 @@ void test_heap_rosnace()
 }
 /*
 
-	high_resolution_clock::time_point t1;
-	high_resolution_clock::time_point t2;
+	std::chrono::high_resolution_clock::time_point t1;
+	std::chrono::high_resolution_clock::time_point t2;
 
 
-	t1 = high_resolution_clock::now();
+	t1 = std::chrono::high_resolution_clock::now();
 
 	//mierzona operacja
 
-	t2 = high_resolution_clock::now();
-	duration<double> pomiar = duration_cast<duration<double>>(t2 - t1);
+	t2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> pomiar = duration_cast<duration<double>>(t2 - t1);
+
 	std::cout <<std::fixed<<std::setprecision (12) << pomiar.count() << std::endl;
 
 
