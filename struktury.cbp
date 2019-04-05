@@ -46,8 +46,6 @@
 		<Unit filename="src/Max_Heap.h" />
 		<Unit filename="src/SL_List.cpp" />
 		<Unit filename="src/SL_List.h" />
-		<Unit filename="src/Timer.cpp" />
-		<Unit filename="src/Timer.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/main_array.cpp" />
 		<Unit filename="src/main_array.h" />
@@ -57,6 +55,8 @@
 		<Unit filename="src/main_list.h" />
 		<Unit filename="src/menu.cpp" />
 		<Unit filename="src/menu.h" />
+		<Unit filename="src/testy.cpp" />
+		<Unit filename="src/testy.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

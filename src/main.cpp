@@ -4,7 +4,7 @@
 #include "main_heap.h"
 #include "DArray.h"
 #include "menu.h"
-#include "Timer.h"
+//#include "Timer.h"
 #include "testy.h"
 
 #include <ctime>
@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     srand(time(NULL));
 	//main_heap(argc, argv);
 
-	test_heap_rosnace();
+//	test_heap_rosnace();
 //	test_heap_malejace();
 //	test_list_random();
 //	test_array_rand();
@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     cout << argv[0] << endl;
     cout << "Program: Struktury" << endl;
 
-//    menu();
+    menu();
 
 
     return 0;
