@@ -73,7 +73,7 @@ void menu_table()
 		cout << endl;
 		switch (opt){
 		case '1': //tutaj wczytywanie  tablicy z pliku
-			cout << " Podaj nazwę zbioru:";
+			cout << " Podaj nazwe zbioru:";
 			cin >> fileName;
 			myTab.load_from_file(fileName);
 			myTab.print();
@@ -89,7 +89,7 @@ void menu_table()
 		case '3': //tutaj dodawanie elementu do tablicy
 			cout << " podaj index:";
 			cin >> index;
-			cout << " podaj waertość:";
+			cout << " podaj waertosc:";
 			cin >> value;
 
 			myTab.insert(index,value);
@@ -97,16 +97,16 @@ void menu_table()
 			break;
 
 		case '4': //tutaj znajdowanie elemetu w tablicy
-			cout << " podaj waertość:";
+			cout << " podaj waertosc:";
 			cin >> value;
 			if (myTab.find(value) >= 0 )
-				cout << "poadana wartośc jest w tablicy";
+				cout << "poadana wartosc jest w tablicy";
 			else
-				cout << "poadanej wartości NIE ma w tablicy";
+				cout << "poadanej wartosci NIE ma w tablicy";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
-			cout << "Podaj ilość elementów tablicy:";
+			cout << "Podaj ilosc elementow tablicy:";
 			cin >> value;
 
 			myTab.clear();
@@ -141,7 +141,7 @@ void menu_list()
 		cout << endl;
 		switch (opt){
 		case '1': //tutaj wczytywanie  tablicy z pliku
-			cout << " Podaj nazwę zbioru:";
+			cout << " Podaj nazwe zbioru:";
 			cin >> fileName;
 			lista.load_from_file(fileName);
 			lista.print();
@@ -159,7 +159,7 @@ void menu_list()
 		case '3': //tutaj dodawanie elementu do tablicy
 			cout << " podaj index:";
 			cin >> index;
-			cout << " podaj waertość:";
+			cout << " podaj waertosc:";
 			cin >> value;
 
 			lista.insert(index,value);
@@ -168,16 +168,16 @@ void menu_list()
 			break;
 
 		case '4': //tutaj znajdowanie elemetu w tablicy
-			cout << " podaj waertość:";
+			cout << " podaj waertosc:";
 			cin >> value;
 			if (lista.find(value) >= 0 )
-				cout << "poadana wartośc jest na liscie";
+				cout << "poadana wartosc jest na liscie";
 			else
-				cout << "poadanej wartości NIE ma na liscie";
+				cout << "poadanej wartosci NIE ma na liscie";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
-			cout << "Podaj ilość elementów listy:";
+			cout << "Podaj ilosc elementow listy:";
 			cin >> value;
 
 			lista.clear();
@@ -215,7 +215,7 @@ void menu_heap()
 		cout << endl;
 		switch (opt){
 		case '1': //tutaj wczytywanie  kopca z pliku
-			cout << " Podaj nazwę zbioru:";
+			cout << " Podaj nazwe zbioru:";
 			cin >> fileName;
 			kopiec.load_from_file(fileName);
 			kopiec.print();
@@ -242,11 +242,11 @@ void menu_heap()
 			if (kopiec.search_for(value))
 				cout << "podana wartosc jest w kopcu";
 			else
-				cout << "podanej wartości NIE ma w kopcu";
+				cout << "podanej wartosci NIE ma w kopcu";
 			break;
 
 		case '5':  //tutaj generowanie  tablicy
-			cout << "Podaj ilość elementów kopca:";
+			cout << "Podaj ilosc elementow kopca:";
 			cin >> value;
 
 			kopiec.clear();

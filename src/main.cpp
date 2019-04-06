@@ -14,8 +14,10 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
+    cout << "Program: Struktury" << endl;
+
     srand(time(NULL));
-	//main_heap(argc, argv);
+    menu();
 
 //	test_heap_rosnace();
 //	test_heap_malejace();
@@ -35,9 +37,7 @@ int main(int argc, char** argv)
 //	tab.print();
 
     cout << argv[0] << endl;
-    cout << "Program: Struktury" << endl;
 
-    menu();
 
 
     return 0;
