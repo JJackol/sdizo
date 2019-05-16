@@ -1,3 +1,11 @@
+#unused files
+ar_test.txt
+py/make_plots.py
+src/Timer.cpp
+src/Timer.h
+tab_test1.txt
+test2.txt
+test3.txt
 #bin folder
 bin
 bin/
