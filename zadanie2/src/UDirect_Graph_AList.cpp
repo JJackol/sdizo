@@ -1,11 +1,21 @@
-#include "Graph_AList.h"
+#include "UDirect_Graph_AList.h"
+#include <iostream>
 
-Graph_AList::Graph_AList()
-{
-	//ctor
-}
+	UDirect_Graph_AList::UDirect_Graph_AList(int _n): n{_n}
+	{
+		a_list = new Adjacency_List[n];
+	}
 
-Graph_AList::~Graph_AList()
-{
-	//dtor
-}
+	UDirect_Graph_AList::~UDirect_Graph_AList()
+	{
+		delete[] a_list;
+	}
+
+	void UDirect_Graph_AList::display()
+	{
+		for(int i=0; i<n; i++)
+		{
+			std::cout<<"source: "<<i<< "-->-";
+			a_list[i].print();
+		}
+	}

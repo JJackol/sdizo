@@ -1,34 +1,19 @@
 #ifndef GRAPH_ALIST_H
 #define GRAPH_ALIST_H
 
+#include "Adjacency_List.h"
+
 
 class UDirect_Graph_AList
 {
 	int n; // n= |V|
+	Adjacency_List* a_list;
 
-	class A_List
-	{
-		class Node
-		{
-			int dest;
-			int weight;
-			Node* next;
-			Node(int _dest, int _weight, Node* _next=nullptr)
-				:dest{_dest}, weight{_weight}, next{_next} {}
-		};
-		Node* head;
-
-		A_List() :head{nullptr}{}
-
-
-	};
 	public:
-		UDirect_Graph_AList();
+		UDirect_Graph_AList(int _n);
 		virtual ~UDirect_Graph_AList();
 
-	protected:
-
-	private:
+		void display();
 };
 
 #endif // GRAPH_ALIST_H
