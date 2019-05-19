@@ -23,9 +23,11 @@ class Adjacency_List
 		void insert_beg(int _dest, int _weight);
 		void remove_val(int dest);
 		int get_weight(int dest);
+		int get_size();
 
-		void print();
 		void clear();
+		void print();
+
 };
 
 #endif // ADJACENCY_LIST_H

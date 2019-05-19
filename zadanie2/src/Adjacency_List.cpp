@@ -66,6 +66,18 @@
         return NOT_AN_EDGE;
 	}
 
+	int Adjacency_List::get_size()
+	{
+		int i=0;
+		Node* temp = head;
+		while(temp!=nullptr)
+		{
+			i++;
+			temp = temp->next;
+		}
+		return i;
+	}
+
 	void Adjacency_List::clear()
 	{
 		Node* temp;
