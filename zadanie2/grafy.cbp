@@ -33,6 +33,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Adjacency_List.cpp" />
+		<Unit filename="src/Adjacency_List.h" />
+		<Unit filename="src/Graph_I.cpp" />
+		<Unit filename="src/Graph_I.h" />
+		<Unit filename="src/UDirect_Graph_AList.cpp" />
+		<Unit filename="src/UDirect_Graph_AList.h" />
+		<Unit filename="src/UDirect_Graph_AMatrix.cpp" />
+		<Unit filename="src/UDirect_Graph_AMatrix.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
