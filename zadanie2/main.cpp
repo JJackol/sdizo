@@ -2,6 +2,7 @@
 #include <climits>
 #include "src/Adjacency_List.h"
 #include "src/UDirect_Graph_AList.h"
+#include "src/Disjoint_Set.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -17,6 +18,35 @@ int main()
 {
 	srand(time(NULL));
 	test2();
+
+    Disjoint_Set stt{10};
+
+    cout<< stt.find(0)<<endl;
+    cout<< stt.find(1)<<endl;
+    cout<< stt.find(9)<<endl;
+
+    stt.join(0,1);
+    stt.join(0,9);
+    stt.join(9,2);
+    cout<< 0<<stt.find(0)<<endl;
+    cout<< 1<<stt.find(1)<<endl;
+    cout<< 2<<stt.find(2)<<endl;
+    cout<< 9<<stt.find(9)<<endl;
+    stt.join(5,6);
+    stt.join(5,7);
+    stt.join(6,8);
+    cout<< 5<<stt.find(5)<<endl;
+    cout<< 6<<stt.find(6)<<endl;
+    cout<< 7<<stt.find(7)<<endl;
+    cout<< 8<<stt.find(8)<<endl<<endl;
+
+    stt.join(2,5);
+
+    for (int i=0; i<10; i++)
+    {
+        cout<<i <<' '<<stt.find(i)<<endl;
+    }
+
     return 0;
 }
 
