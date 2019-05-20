@@ -2,7 +2,7 @@
 #define ADJACENCY_LIST_H
 #include <climits>
 
-constexpr int NOT_AN_EDGE = INT_MIN;
+constexpr int NOT_AN_EDGE = INT_MAX;
 class Node
 	{
 	public:
