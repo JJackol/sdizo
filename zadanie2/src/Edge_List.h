@@ -4,15 +4,19 @@
 
 class ENode
 {
+
 	public:
 		Edge e;
 		ENode* next;
 		ENode(Edge _e, ENode* _next=nullptr)
 			:e{_e}, next{_next} {}
+
 };
 
 class Edge_List
 {
+
+
 	ENode* head;
 	int _weight;
 

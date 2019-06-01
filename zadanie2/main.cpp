@@ -26,8 +26,8 @@ int main()
 {
 	srand(time(NULL));
 	//test2();
-	//testKruskal();
-	testPrim();
+	testKruskal();
+	//testPrim();
 	//testPrioQ();
 
     return 0;
@@ -160,13 +160,14 @@ void testPrim()
 
 void testKruskal()
 {
-	UDirect_Graph_AMatrix mgraf{10};
-	mgraf.gen(10, 10, 1, 100);
-	mgraf.display();
-	mgraf.Kruskal().display();
+	UDirect_Graph_AList lgraf{10};
+	lgraf.gen(10, 10, 1, 100);
+	lgraf.display();
+	//lgraf.Kruskal().display();
 
-	mgraf.gen(10, 0, 1, 100);
-	mgraf.display();
-	mgraf.Kruskal().display();
+	lgraf.gen(10, 90, 1, 100);
+	lgraf.display();
+	lgraf.Prim().display();
+	lgraf.Kruskal().display();
 
 }

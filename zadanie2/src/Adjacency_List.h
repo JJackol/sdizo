@@ -15,6 +15,7 @@ class Node
 
 class Adjacency_List
 {
+		friend class UDirect_Graph_AList;
 		Node* head;
 
 	public:

@@ -19,12 +19,15 @@ class UDirect_Graph_AList
 
 		int edge_weight(int source, int dest);
 
+
+		Edge_List Kruskal();
 		Edge_List Prim();
 
 
 		void add_edge(int source, int dest, int w);
 		void gen(int _n, double proc, int min_w=0, int max_w=100);
 		int get_edge_degree(int source);
+		void clear();
 
 		void display();
 };

@@ -54,7 +54,6 @@
 			}
 
 			int max_number_of_edges = (n*(n-1))/2;
-
 			int number_of_edges = ceil(max_number_of_edges*proc*0.01);
 
 			int dest, source;
@@ -62,13 +61,14 @@
 			int i;
 			Disjoint_Set d_set{n};
 			//pętla generująca drzewo rozpinające
-			//dołącza kolejne wierzchołki do już istniejącego drzewa
+			//rozpoczyna od lasu z n drzewami w postaci poj. wierzchołków
+			//łączy wierzchołki z róznych drzew w lesie, scala te dwa drzewa w jedno
 			i=1;
 			while(i<n)
 			{
 				source = rand()%n;
 				dest = rand()%n;
-				if(
+				if	(
 						source != dest
 						&& d_set.find(source) != d_set.find(dest)
 						&& matrix[source][dest] == NOT_AN_EDGE_UD
@@ -81,10 +81,9 @@
 				}
 			}
 
-
+			//generuje resztę wierzchołków
 			while(i<=number_of_edges)
 			{
-
 				source = rand()%n;
 				dest = rand()%n;
 				if(source!=dest && matrix[source][dest]==NOT_AN_EDGE_UD)
@@ -107,16 +106,6 @@
 		}
 	}
 
-//	KRUSKAL(G):
-//1 A = ∅
-//2 foreach v ∈ G.V:
-//3    MAKE-SET(v)
-//4 foreach (u, v) in G.E ordered by weight(u, v), increasing:
-//5    if FIND-SET(u) ≠ FIND-SET(v):
-//6       A = A ∪ {(u, v)}
-//7       UNION(FIND-SET(u), FIND-SET(v))
-//8 return A
-
 	Edge_List UDirect_Graph_AMatrix::Prim()
 	{
 		Edge_List mst;
@@ -133,8 +122,7 @@
 			cost[i] = Edge::NOT_AN_EDGE;
 		}
 
-		int i=1, start = 0;//rand()%n;
-		//q.decrease_key({start, start, cost[k]}, start, 0);
+		int i=1, start = rand()%n;
 		cost[start] = 0;
 		is_in_tree[start] = true;
 
@@ -160,9 +148,6 @@
 			start = popped.dest;
 			i++;
 		}
-
-
-
 		return mst;
 	}
 
@@ -213,6 +198,7 @@
 
 	void UDirect_Graph_AMatrix::display()
 	{
+		std::cout<<"Graf - reprezentacja: macierz sasiedztwa "<<std::endl;
 		for(int i=0; i<n; i++)
 		{
 			for(int j=0; j<n; j++)
