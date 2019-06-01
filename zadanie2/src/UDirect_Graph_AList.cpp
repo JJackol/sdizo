@@ -60,7 +60,7 @@
 		n = _n;
 		a_list = new Adjacency_List[n];
 		int max_number_of_edges = n*(n-1)/2;
-		int number_of_edges = ceil(max_number_of_edges*proc);
+		int number_of_edges = ceil(max_number_of_edges*proc*0.01);
 
 		int join;
 		int i_weight;

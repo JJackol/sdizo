@@ -5,6 +5,7 @@
 #include "src/UDirect_Graph_AMatrix.h"
 #include "src/Disjoint_Set.h"
 #include "src/Edge_List.h"
+#include "src/Priority_Queue.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -15,22 +16,16 @@ constexpr int MAX_INT = INT_MAX;
 
 void test1();
 void test2();
+void test3();
+void testEdgeList();
+void testPrioQ();
+void testKruskal();
 
 int main()
 {
 	srand(time(NULL));
 	//test2();
-
-	Edge_List elist;
-	elist.insert_beg({2,4,6});
-	elist.insert_beg({2,4,6});
-	elist.display();
-	Edge ed[2] = { {1,2,3}, {4,5,6} };
-	Edge* eg = new Edge[2];
-	cout<< sizeof(ed)<<endl;
-	cout<< sizeof(elist)<<endl;
-	cout<< sizeof(Edge)<<endl;
-	cout<< sizeof(ENode)<<endl;
+	testKruskal();
 
     return 0;
 }
@@ -102,5 +97,63 @@ void test3()
 
     UDirect_Graph_AList graf2{graf};
     graf2.display();
+
+}
+
+void testEdgeList()
+{
+	Edge_List elist;
+	elist.insert_beg({2,4,6});
+	elist.insert_beg({2,4,6});
+	elist.display();
+	Edge ed[2] = { {1,2,3}, {4,5,6} };
+	Edge* eg = new Edge[2];
+	cout<< sizeof(ed)<<endl;
+	cout<< sizeof(elist)<<endl;
+	cout<< sizeof(Edge)<<endl;
+	cout<< sizeof(ENode)<<endl;
+
+}
+
+void testPrioQ()
+{
+	Priority_Queue q{16};
+	q.push({1,2,3});
+	q.push({7,7,6});
+	q.push({0,1,-3});
+	q.push({0,1,10});
+	q.push({0,1,0});
+	q.push({0,1,8});
+	q.push({0,1,6});
+	q.push({0,1,5});
+	q.push({0,1,3});
+	q.push({0,1,4});
+
+	q.display();
+
+	cout<<"pop"<<endl;
+	q.pop().display();
+	cout<<"pop"<<endl;
+	q.display();
+
+	cout<<"pop"<<endl;
+	q.pop().display();
+	cout<<"pop"<<endl;
+	q.display();
+
+
+}
+
+void testKruskal()
+{
+	UDirect_Graph_AMatrix mgraf{10};
+	mgraf.gen(1000, 90);
+	mgraf.display();
+
+	mgraf.Kruskal().display();
+	mgraf.gen(1000, 90);
+	mgraf.display();
+
+	mgraf.Kruskal().display();
 
 }

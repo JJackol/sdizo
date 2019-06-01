@@ -18,7 +18,7 @@ class UDirect_Graph_AMatrix
 
 		bool add_edge(int source, int dest, int w);
 		//bool remove_edge(source, dest)
-		void gen(int _n, double proc, int min_w, int max_w);
+		void gen(int _n, double proc, int min_w=0, int max_w=10);
 		void make_complete(int min_w, int max_w);
 
 		Edge_List Kruskal();

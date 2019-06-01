@@ -1,4 +1,6 @@
 #include "UDirect_Graph_AMatrix.h"
+#include "Disjoint_Set.h"
+#include "Priority_Queue.h"
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -60,8 +62,8 @@
 
 			int max_number_of_edges = (n*(n-1))/2;
 
-			int number_of_edges = ceil(max_number_of_edges*proc);
-			std::cout<<number_of_edges<<std::endl;
+			int number_of_edges = ceil(max_number_of_edges*proc*0.01);
+
 			int join, dest, source;
 			int i_weight;
 			int i;
@@ -74,7 +76,7 @@
 				add_edge(join, i, i_weight);
 			}
 
-			std::cout<<number_of_edges<<std::endl;
+
 			while(i<=number_of_edges)
 			{
 
@@ -82,7 +84,6 @@
 				dest = rand()%n;
 				if(source!=dest && matrix[source][dest]==NOT_AN_EDGE_UD)
 				{
-					std::cout<<number_of_edges<<std::endl;
 					i_weight = rand()% (max_w-min_w+1) - min_w ;
 					add_edge(source, dest, i_weight);
 					i++;
@@ -113,7 +114,36 @@
 
 	Edge_List UDirect_Graph_AMatrix::Kruskal()
 	{
-		return Edge_List();
+		Edge_List mst;
+		Disjoint_Set forest{n};
+		Priority_Queue q{ (n*(n-1))/2 };
+		int temp_w;
+		Edge temp_edge;
+
+		for(int i=0; i<n; i++)
+		{
+			for(int j=0; j<i; j++)
+			{
+				temp_w = this->edge_weight(i, j);
+				if (temp_w!=NOT_AN_EDGE_UD)
+					q.push( {i, j, temp_w} );
+			}
+		}
+
+		int mst_edges=0;
+		while (mst_edges<n-1)
+		{
+			temp_edge = q.pop();
+			if ( forest.find(temp_edge.source) != forest.find(temp_edge.dest) )
+			{
+				mst.insert_beg(temp_edge);
+				forest.join(temp_edge.source, temp_edge.dest);
+				mst_edges++;
+			}
+
+		}
+
+		return mst;
 	}
 
 
