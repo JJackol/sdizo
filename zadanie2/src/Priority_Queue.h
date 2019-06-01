@@ -12,10 +12,13 @@ class Priority_Queue
 		virtual ~Priority_Queue();
 		void push(Edge el);
 		Edge pop();
+		void decrease_key(Edge e, int new_source, int new_key);
+
 
 
 		void display();
 	protected:
+		void heapify_up(int index);
 		void heapify_down(int index);
 	private:
 };

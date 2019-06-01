@@ -20,12 +20,15 @@ void test3();
 void testEdgeList();
 void testPrioQ();
 void testKruskal();
+void testPrim();
 
 int main()
 {
 	srand(time(NULL));
 	//test2();
-	testKruskal();
+	//testKruskal();
+	testPrim();
+	//testPrioQ();
 
     return 0;
 }
@@ -137,23 +140,33 @@ void testPrioQ()
 	q.display();
 
 	cout<<"pop"<<endl;
-	q.pop().display();
+	q.decrease_key({0,1,10},100, -13);
 	cout<<"pop"<<endl;
 	q.display();
 
 
 }
 
+void testPrim()
+{
+	UDirect_Graph_AMatrix mgraf{10};
+	mgraf.gen(10, 50, 1, 100);
+	mgraf.display();
+	mgraf.Prim().display();
+	mgraf.Kruskal().display();
+	mgraf.display();
+
+}
+
 void testKruskal()
 {
 	UDirect_Graph_AMatrix mgraf{10};
-	mgraf.gen(1000, 90);
+	mgraf.gen(10, 10, 1, 100);
 	mgraf.display();
-
 	mgraf.Kruskal().display();
-	mgraf.gen(1000, 90);
-	mgraf.display();
 
+	mgraf.gen(10, 0, 1, 100);
+	mgraf.display();
 	mgraf.Kruskal().display();
 
 }

@@ -22,6 +22,7 @@ class UDirect_Graph_AMatrix
 		void make_complete(int min_w, int max_w);
 
 		Edge_List Kruskal();
+		Edge_List Prim();
 
 		void clear();
 		void display();

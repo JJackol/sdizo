@@ -43,16 +43,9 @@
 		matrix = new int*[n];
 		for(int i=0; i<n; i++)
 		{
-			for(int k=0; k<n; k++)
-				matrix[i] = new int[n];
+			matrix[i] = new int[n];
 		}
 
-		if(false)
-		{
-			this->make_complete(min_w, max_w);
-
-		}
-		else
 		{
 			for(int i=0; i<n; i++)
 			{
@@ -64,16 +57,28 @@
 
 			int number_of_edges = ceil(max_number_of_edges*proc*0.01);
 
-			int join, dest, source;
+			int dest, source;
 			int i_weight;
 			int i;
+			Disjoint_Set d_set{n};
 			//pętla generująca drzewo rozpinające
 			//dołącza kolejne wierzchołki do już istniejącego drzewa
-			for (i = 1; i<n; i++)
+			i=1;
+			while(i<n)
 			{
-				join = rand()%i;
-				i_weight = rand()% (max_w-min_w+1) - min_w ;
-				add_edge(join, i, i_weight);
+				source = rand()%n;
+				dest = rand()%n;
+				if(
+						source != dest
+						&& d_set.find(source) != d_set.find(dest)
+						&& matrix[source][dest] == NOT_AN_EDGE_UD
+					)
+				{
+					i_weight = rand()% (max_w-min_w+1) + min_w ;
+					add_edge(source , dest, i_weight);
+					d_set.join(source, dest);
+					i++;
+				}
 			}
 
 
@@ -84,7 +89,7 @@
 				dest = rand()%n;
 				if(source!=dest && matrix[source][dest]==NOT_AN_EDGE_UD)
 				{
-					i_weight = rand()% (max_w-min_w+1) - min_w ;
+					i_weight = rand()% (max_w-min_w+1) + min_w ;
 					add_edge(source, dest, i_weight);
 					i++;
 				}
@@ -111,6 +116,55 @@
 //6       A = A ∪ {(u, v)}
 //7       UNION(FIND-SET(u), FIND-SET(v))
 //8 return A
+
+	Edge_List UDirect_Graph_AMatrix::Prim()
+	{
+		Edge_List mst;
+		bool is_in_tree[n];
+		int cost[n];
+		Priority_Queue q{n};
+		Edge popped;
+
+		//init loop
+		for (int i=0; i<n; i++)
+		{
+			q.push( {-1, i, Edge::NOT_AN_EDGE} );
+			is_in_tree[i] = false;
+			cost[i] = Edge::NOT_AN_EDGE;
+		}
+
+		int i=1, start = 0;//rand()%n;
+		//q.decrease_key({start, start, cost[k]}, start, 0);
+		cost[start] = 0;
+		is_in_tree[start] = true;
+
+		while(i<n)
+		{
+
+			for(int k=0; k<n; k++)
+			{
+				if (	matrix[start][k] != Edge::NOT_AN_EDGE
+						&& matrix[start][k] < cost[k]
+						&& !is_in_tree[k])
+				{
+					q.decrease_key({start, k, cost[k]}, start, matrix[start][k]);
+					cost[k] = matrix[start][k];
+				}
+			}
+
+			popped = q.pop();
+
+			cost[popped.dest] = cost[popped.source]+matrix[popped.dest][popped.source];
+			is_in_tree[popped.dest] = true;
+			mst.insert_beg( {popped.source, popped.dest, matrix[popped.dest][popped.source]} );
+			start = popped.dest;
+			i++;
+		}
+
+
+
+		return mst;
+	}
 
 	Edge_List UDirect_Graph_AMatrix::Kruskal()
 	{

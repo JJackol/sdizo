@@ -39,6 +39,37 @@ Edge Priority_Queue::pop()
 		return ret;
 }
 
+void Priority_Queue::decrease_key(Edge e, int new_source, int new_key)
+{
+		int index = 0;
+		while(index < _size)
+		{
+			if(tab[index].weight == e.weight && tab[index].dest == e.dest)
+			{
+				tab[index].weight = new_key;
+				tab[index].source = new_source;
+				heapify_up(index);
+				return;
+			}
+			index++;
+		}
+
+}
+
+void Priority_Queue::heapify_up(int index)
+{
+		Edge temp;
+		while(index > 0)
+			if(tab[index] < tab[(index-1)/2] )
+			{
+				temp = tab[index];
+				tab[index] = tab[(index-1)/2];
+				tab[(index-1)/2] = temp;
+				index = (index-1)/2;
+			}
+			else return;
+}
+
 void Priority_Queue::heapify_down(int index)
 {
 		int p = index; //parent

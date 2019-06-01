@@ -18,6 +18,29 @@
 				}
 	}
 
+	Edge_List::Edge_List(const Edge_List& other)
+	{
+		if (other.head!=nullptr)
+			head = new ENode(*other.head);
+		else
+			return;
+
+		ENode * other_temp = other.head;
+		ENode * temp = head;
+		while(other.head != nullptr)
+			{
+				temp->next = new ENode{ *(other_temp->next) };
+				delete head;
+				head = temp;
+			}
+	}
+
+	Edge_List& Edge_List::operator=(const Edge_List& rhs)
+	{
+		if (this == &rhs) return *this; // handle self assignment
+
+		return *this;
+	}
 
 	void Edge_List::insert_beg(Edge edge)
 	{
@@ -80,6 +103,19 @@
 		return i;
 	}
 
+	int Edge_List::get_weight()
+	{
+		int sum=0;
+		ENode* temp = head;
+		while (temp!=nullptr)
+		{
+			sum += temp->e.weight;
+			temp = temp->next;
+		}
+		_weight = sum;
+		return sum;
+	}
+
 	void Edge_List::clear()
 	{
 		ENode* temp;
@@ -100,6 +136,8 @@
 			temp->e.display();
 			temp = temp->next;
 		}
+		std::cout<<"size: "<<get_size()<<std::endl;
+		std::cout<<"mst weight: "<<get_weight()<<std::endl;
 		std::cout<<std::endl;
 
 	}
