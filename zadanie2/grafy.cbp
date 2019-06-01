@@ -39,6 +39,8 @@
 		<Unit filename="src/Adjacency_List.h" />
 		<Unit filename="src/Disjoint_Set.cpp" />
 		<Unit filename="src/Disjoint_Set.h" />
+		<Unit filename="src/Edge_List.cpp" />
+		<Unit filename="src/Edge_List.h" />
 		<Unit filename="src/Graph_I.cpp" />
 		<Unit filename="src/Graph_I.h" />
 		<Unit filename="src/UDirect_Graph_AList.cpp" />
