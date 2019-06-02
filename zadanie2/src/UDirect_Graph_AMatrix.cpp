@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <fstream>
 
 
 	UDirect_Graph_AMatrix::UDirect_Graph_AMatrix(int _n): n{_n}
@@ -196,9 +197,44 @@
 		n=0;
 	}
 
+	void UDirect_Graph_AMatrix::load_from_file(std::string f_name)
+	{
+
+		std::fstream file;
+		std::string input;
+		int _n, _k;
+		int source, dest, weight;
+		file.open( f_name , std::ios::in );
+		if( file.good() == true )
+		{
+		    file >> _k >> _n;
+		    clear();
+		    n = _n;
+		    matrix = new int*[n];
+		    for(int i=0; i<n; i++)
+			{
+				matrix[i] = new int[n];
+				for(int j=0; j<n; j++)
+				{
+					matrix[i][j] = Edge::NOT_AN_EDGE;
+				}
+			}
+
+			while(!file.eof() && _k--)
+			{
+				file>>source>>dest>>weight;
+
+				this->add_edge(source, dest, weight);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
+	}
+
 	void UDirect_Graph_AMatrix::display()
 	{
-		std::cout<<"Graf - reprezentacja: macierz sasiedztwa "<<std::endl;
+		std::cout<<"\nGraf - reprezentacja: macierz sasiedztwa "<<std::endl;
 		for(int i=0; i<n; i++)
 		{
 			for(int j=0; j<n; j++)

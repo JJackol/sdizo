@@ -15,6 +15,8 @@ class UDirect_Graph_AList
 	public:
 		UDirect_Graph_AList(int _n);
 		UDirect_Graph_AList(UDirect_Graph_AMatrix& copy_g);
+		void clone( UDirect_Graph_AMatrix& copy_g );
+
 		virtual ~UDirect_Graph_AList();
 		int get_n(){return n;};
 

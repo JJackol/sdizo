@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <fstream>
 
 
 	Direct_Graph_AMatrix::Direct_Graph_AMatrix(int _n): n{_n}
@@ -35,6 +36,8 @@
 		return true;
 	}
 
+	//result in arrays passed as arguments
+	// arrays needs to be allocated before calling this func.
 	void Direct_Graph_AMatrix::Dijkstra(int start, int* dist, int* prev)
 	{
 		Priority_Queue q{n};
@@ -69,6 +72,44 @@
 				}
 		}
 		return;
+	}
+
+	//result in arrays passed as arguments
+	// arrays needs to be allocated before calling this func.
+	//
+	//returns true if negative cycle found
+	bool Direct_Graph_AMatrix::BellmanFord(int start, int* dist, int* prev)
+	{
+		bool flag;
+		for(int i=0; i<n; i++)
+		{
+			dist[i] = Edge::NOT_AN_EDGE;
+			prev[i] = -1;
+		}
+		dist[start] = 0;
+		prev[start] = start;
+
+		for(int i=0; i<n; i++)
+		{
+			flag = false;
+			for(int i=0; i<n; i++)
+			{
+				for(int k=0; k<n; k++)
+				{
+
+					if (	edge_weight(i, k) != Edge::NOT_AN_EDGE
+							&& dist[k]  > (long long)dist[i]+edge_weight(i, k)
+						)
+					{
+						prev[k] = i;
+						dist[k] = dist[i]+edge_weight(i, k) ;
+						flag = true;
+					}
+
+				}
+			}
+		}
+		return flag;
 	}
 
 	void Direct_Graph_AMatrix::gen(int _n, double proc, int min_w, int max_w)
@@ -157,9 +198,48 @@
 		n=0;
 	}
 
+	int Direct_Graph_AMatrix::load_from_file(std::string f_name)
+	{
+		//
+		//	TODO	//////////////////
+		//
+
+		std::fstream file;
+		std::string input;
+		int _n, _k, start;
+		int source, dest, weight;
+		file.open( f_name , std::ios::in );
+		if( file.good() == true )
+		{
+		    file >> _k >> _n >> start;
+			clear();
+		    n = _n;
+			matrix = new int*[n];
+		    for(int i=0; i<n; i++)
+			{
+				matrix[i] = new int[n];
+				for(int j=0; j<n; j++)
+				{
+					matrix[i][j] = Edge::NOT_AN_EDGE;
+				}
+			}
+
+			while(!file.eof() && _k--)
+			{
+				file>>source>>dest>>weight;
+
+				this->add_edge(source, dest, weight);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
+		return start;
+	}
+
 	void Direct_Graph_AMatrix::display()
 	{
-		std::cout<<"Graf - reprezentacja: macierz sasiedztwa "<<std::endl;
+		std::cout<<"\nGraf skierowany - reprezentacja: macierz sasiedztwa "<<std::endl;
 		for(int i=0; i<n; i++)
 		{
 			for(int j=0; j<n; j++)

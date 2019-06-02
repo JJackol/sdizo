@@ -8,6 +8,7 @@
 #include "src/Disjoint_Set.h"
 #include "src/Edge_List.h"
 #include "src/Priority_Queue.h"
+#include "src/menu.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -34,7 +35,9 @@ int main()
 	//testKruskal();
 	//testPrim();
 	//testPrioQ();
-	testDirectList();
+	//testDirectList();
+
+	menu();
 
     return 0;
 }
@@ -196,6 +199,15 @@ void testDirectList()
 
 	Direct_Graph_AMatrix dmatrix{0};
 	dmatrix.gen(N, 50);
+	cout<<"Dijkstra matrix"<<endl;
+	dmatrix.display();
+	dmatrix.Dijkstra(0, dist, prev);
+
+	for(int i=0;i<N; i++)
+	{
+		cout<<i<<' '<<prev[i]<<' '<<dist[i]<<endl;
+	}
+	cout<<"Bellman-Ford matrix"<<endl;
 	dmatrix.display();
 	dmatrix.Dijkstra(0, dist, prev);
 
@@ -204,11 +216,21 @@ void testDirectList()
 		cout<<i<<' '<<prev[i]<<' '<<dist[i]<<endl;
 	}
 
-
+	cout<<"Dijkstra list"<<endl;
 	Direct_Graph_AList dlist{dmatrix};
 	//dlist.gen(10, 50);
 	dlist.display();
 	dlist.Dijkstra(0, dist, prev);
+
+	for(int i=0;i<N; i++)
+	{
+		cout<<i<<' '<<prev[i]<<' '<<dist[i]<<endl;
+	}
+
+
+	cout<<"Bellman-Ford list"<<endl;
+	dlist.display();
+	dlist.BellmanFord(0, dist, prev);
 
 	for(int i=0;i<N; i++)
 	{

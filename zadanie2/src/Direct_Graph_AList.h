@@ -15,12 +15,14 @@ class Direct_Graph_AList
 	public:
 		Direct_Graph_AList(int _n);
 		Direct_Graph_AList(Direct_Graph_AMatrix& copy_g);
+		void clone(Direct_Graph_AMatrix& copy_g);
 		virtual ~Direct_Graph_AList();
 		int get_n(){return n;};
 
 		int edge_weight(int source, int dest);
 
 		void Dijkstra(int start, int* dist, int* prev);
+		bool BellmanFord(int start, int* dist, int* prev);
 
 
 
@@ -29,7 +31,7 @@ class Direct_Graph_AList
 		int get_edge_degree(int source);
 		void clear();
 
-		void load_from_file(std::string f_name);
+		int load_from_file(std::string f_name);
 		void display();
 };
 

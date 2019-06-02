@@ -24,6 +24,20 @@
 		}
 	}
 
+	void UDirect_Graph_AList::clone( UDirect_Graph_AMatrix& copy_g )
+	{
+		this->clear();
+		n = copy_g.get_n();
+		a_list = new Adjacency_List[n];
+
+		for(int i=0; i<n; i++)
+		{
+			for(int k=i; k<n; k++)
+				if(copy_g.matrix[i][k] != NOT_AN_EDGE_UD)
+					add_edge(i, k, copy_g.matrix[i][k]);
+		}
+	}
+
 	UDirect_Graph_AList::~UDirect_Graph_AList()
 	{
 		delete[] a_list;
@@ -191,7 +205,7 @@
 
 	void UDirect_Graph_AList::load_from_file(std::string f_name)
 	{
-		clear();
+
 		std::fstream file;
 		std::string input;
 		int _n, _k;
@@ -200,6 +214,7 @@
 		if( file.good() == true )
 		{
 		    file >> _k >> _n;
+		    clear();
 		    n = _n;
 		    a_list = new Adjacency_List[n];
 
@@ -217,7 +232,7 @@
 
 	void UDirect_Graph_AList::display()
 	{
-		std::cout<<"Graf - reprezentacja: lista sasiedztwa "<<std::endl;
+		std::cout<<"\nGraf - reprezentacja: lista sasiedztwa "<<std::endl;
 		for(int i=0; i<n; i++)
 		{
 			std::cout<<"source: "<<i<< "-->-";

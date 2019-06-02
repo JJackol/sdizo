@@ -24,6 +24,19 @@
 		}
 	}
 
+	void Direct_Graph_AList::clone( Direct_Graph_AMatrix& copy_g )
+	{
+		n = copy_g.get_n();
+		a_list = new Adjacency_List[n];
+
+		for(int i=0; i<n; i++)
+		{
+			for(int k=0; k<n; k++)
+				if(copy_g.matrix[i][k] != Edge::NOT_AN_EDGE)
+					add_edge(i, k, copy_g.matrix[i][k]);
+		}
+	}
+
 	Direct_Graph_AList::~Direct_Graph_AList()
 	{
 		delete[] a_list;
@@ -35,21 +48,9 @@
 		return a_list[source].get_weight(dest);
 	}
 
-//Dijkstra(G,w,s):
-//   dla każdego wierzchołka v w V[G] wykonaj
-//      d[v] := nieskończoność
-//      poprzednik[v] := niezdefiniowane
-//   d[s] := 0
-//   Q := V
-//   dopóki Q niepuste wykonaj
-//      u := Zdejmij_Min(Q)
-//      dla każdego wierzchołka v – sąsiada u wykonaj
-//         jeżeli d[v] > d[u] + w(u, v) to
-//            d[v] := d[u] + w(u, v)
-//            poprzednik[v] := u
-//
-//   Wyświetl("Droga wynosi: " + d[v])
 
+	//result in arrays passed as arguments
+	// arrays needs to be allocated before calling this func.
 	void Direct_Graph_AList::Dijkstra(int start, int* dist, int* prev)
 	{
 		Priority_Queue q{n};
@@ -88,6 +89,48 @@
 				}
 		}
 		return;
+	}
+
+
+
+	//result in arrays passed as arguments
+	// arrays needs to be allocated before calling this func.
+	//
+	//returns true if negative cycle found
+	bool Direct_Graph_AList::BellmanFord(int start, int* dist, int* prev)
+	{
+		bool flag;
+		Node* edge_node;
+		for(int i=0; i<n; i++)
+		{
+			dist[i] = Edge::NOT_AN_EDGE;
+			prev[i] = -1;
+		}
+		dist[start] = 0;
+		prev[start] = start;
+
+		for(int i=0; i<n; i++)
+		{
+			flag = false;
+			for(int i=0; i<n; i++)
+			{
+				edge_node = a_list[i].head;
+				while(edge_node != nullptr)
+				{
+					int k = edge_node->dest;
+					if (	edge_node->weight != Edge::NOT_AN_EDGE
+							&& dist[k]  > (long long)dist[i]+edge_node->weight
+						)
+					{
+						prev[k] = i;
+						dist[k] = dist[i]+edge_node->weight ;
+						flag = true;
+					}
+					edge_node = edge_node->next;
+				}
+			}
+		}
+		return flag;
 	}
 
 
@@ -166,20 +209,17 @@
 		n = 0;
 	}
 
-	void Direct_Graph_AList::load_from_file(std::string f_name)
+	int Direct_Graph_AList::load_from_file(std::string f_name)
 	{
-		//
-		//	TODO	//////////////////
-		//
-		clear();
 		std::fstream file;
 		std::string input;
-		int _n, _k;
+		int _n, _k, start;
 		int source, dest, weight;
 		file.open( f_name , std::ios::in );
 		if( file.good() == true )
 		{
-		    file >> _k >> _n;
+		    file >> _k >> _n >> start;
+		    clear();
 		    n = _n;
 		    a_list = new Adjacency_List[n];
 
@@ -193,11 +233,12 @@
 			//tu operacje na pliku (zapis/odczyt)
 			file.close();
 		}
+		return start;
 	}
 
 	void Direct_Graph_AList::display()
 	{
-		std::cout<<"Graf - reprezentacja: lista sasiedztwa "<<std::endl;
+		std::cout<<"\nGraf skierowany - reprezentacja: lista sasiedztwa "<<std::endl;
 		for(int i=0; i<n; i++)
 		{
 			std::cout<<"source: "<<i<< "-->-";

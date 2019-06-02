@@ -1,7 +1,8 @@
 #ifndef UDIRECT_GRAPH_AMATRIX_H
 #define UDIRECT_GRAPH_AMATRIX_H
 #include <climits>
-#include <Edge_List.h>
+#include <string>
+#include "Edge_List.h"
 
 constexpr int NOT_AN_EDGE_UD = INT_MAX;
 class UDirect_Graph_AMatrix
@@ -24,6 +25,7 @@ class UDirect_Graph_AMatrix
 		Edge_List Kruskal();
 		Edge_List Prim();
 
+		void load_from_file(std::string f_name);
 		void clear();
 		void display();
 
