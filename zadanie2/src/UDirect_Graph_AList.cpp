@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <fstream>
 
 	UDirect_Graph_AList::UDirect_Graph_AList(int _n): n{_n}
 	{
@@ -39,7 +40,7 @@
 		Edge_List mst;
 		Disjoint_Set forest{n};
 		Priority_Queue q{ (n*(n-1)) };
-		int temp_w;
+
 		Edge temp_edge;
 		Node* edge_node;
 
@@ -51,14 +52,6 @@
 				q.push( {i, edge_node->dest, edge_node->weight} );
 				edge_node = edge_node->next;
 			}
-
-			//////////
-//			for(int j=0; j<i; j++)
-//			{
-//				temp_w = this->edge_weight(i, j);
-//				if (temp_w!=NOT_AN_EDGE)
-//					q.push( {i, j, temp_w} );
-//			}
 		}
 
 		int mst_edges=0;
@@ -71,7 +64,6 @@
 				forest.join(temp_edge.source, temp_edge.dest);
 				mst_edges++;
 			}
-
 		}
 
 		return mst;
@@ -79,7 +71,6 @@
 
 	Edge_List UDirect_Graph_AList::Prim()
 	{
-		/////////////////
 		Edge_List mst;
 		bool is_in_tree[n];
 		int cost[n];
@@ -135,58 +126,55 @@
 		return a_list[source].get_size();
 	}
 
-	/**
-	* dont use this f.
-	*
-	*/
+
 	void UDirect_Graph_AList::gen(int _n, double proc, int min_w, int max_w)
 	{
 		this->clear();
 		n = _n;
 		a_list = new Adjacency_List[n];
 
+
+		int max_number_of_edges = (n*(n-1))/2;
+		int number_of_edges = ceil(max_number_of_edges*proc*0.01);
+
+		int dest, source;
+		int i_weight;
+		int i;
+		Disjoint_Set d_set{n};
+		//pętla generująca drzewo rozpinające
+		//rozpoczyna od lasu z n drzewami w postaci poj. wierzchołków
+		//łączy wierzchołki z róznych drzew w lesie, scala te dwa drzewa w jedno
+		i=1;
+		while(i<n)
 		{
-			int max_number_of_edges = (n*(n-1))/2;
-			int number_of_edges = ceil(max_number_of_edges*proc*0.01);
-
-			int dest, source;
-			int i_weight;
-			int i;
-			Disjoint_Set d_set{n};
-			//pętla generująca drzewo rozpinające
-			//rozpoczyna od lasu z n drzewami w postaci poj. wierzchołków
-			//łączy wierzchołki z róznych drzew w lesie, scala te dwa drzewa w jedno
-			i=1;
-			while(i<n)
+			source = rand()%n;
+			dest = rand()%n;
+			if	(
+					source != dest
+					&& d_set.find(source) != d_set.find(dest)
+					&& this->edge_weight(source, dest) == NOT_AN_EDGE_UD
+				)
 			{
-				source = rand()%n;
-				dest = rand()%n;
-				if	(
-						source != dest
-						&& d_set.find(source) != d_set.find(dest)
-						&& this->edge_weight(source, dest) == NOT_AN_EDGE_UD
-					)
-				{
-					i_weight = rand()% (max_w-min_w+1) + min_w ;
-					add_edge(source , dest, i_weight);
-					d_set.join(source, dest);
-					i++;
-				}
-			}
-
-			//generuje resztę wierzchołków
-			while(i<=number_of_edges)
-			{
-				source = rand()%n;
-				dest = rand()%n;
-				if(source!=dest && this->edge_weight(source, dest)==NOT_AN_EDGE_UD)
-				{
-					i_weight = rand()% (max_w-min_w+1) + min_w ;
-					add_edge(source, dest, i_weight);
-					i++;
-				}
+				i_weight = rand()% (max_w-min_w+1) + min_w ;
+				add_edge(source , dest, i_weight);
+				d_set.join(source, dest);
+				i++;
 			}
 		}
+
+		//generuje resztę krawedzi
+		while(i<=number_of_edges)
+		{
+			source = rand()%n;
+			dest = rand()%n;
+			if(source!=dest && this->edge_weight(source, dest)==NOT_AN_EDGE_UD)
+			{
+				i_weight = rand()% (max_w-min_w+1) + min_w ;
+				add_edge(source, dest, i_weight);
+				i++;
+			}
+		}
+
 	}
 
 	void UDirect_Graph_AList::add_edge(int s, int dest, int w)
@@ -199,6 +187,32 @@
 	{
 		delete[] a_list;
 		n = 0;
+	}
+
+	void UDirect_Graph_AList::load_from_file(std::string f_name)
+	{
+		clear();
+		std::fstream file;
+		std::string input;
+		int _n, _k;
+		int source, dest, weight;
+		file.open( f_name , std::ios::in );
+		if( file.good() == true )
+		{
+		    file >> _k >> _n;
+		    n = _n;
+		    a_list = new Adjacency_List[n];
+
+			while(!file.eof() && _k--)
+			{
+				file>>source>>dest>>weight;
+
+				this->add_edge(source, dest, weight);
+			}
+
+			//tu operacje na pliku (zapis/odczyt)
+			file.close();
+		}
 	}
 
 	void UDirect_Graph_AList::display()

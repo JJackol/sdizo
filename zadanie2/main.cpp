@@ -2,7 +2,9 @@
 #include <climits>
 #include "src/Adjacency_List.h"
 #include "src/UDirect_Graph_AList.h"
+#include "src/Direct_Graph_AList.h"
 #include "src/UDirect_Graph_AMatrix.h"
+#include "src/Direct_Graph_AMatrix.h"
 #include "src/Disjoint_Set.h"
 #include "src/Edge_List.h"
 #include "src/Priority_Queue.h"
@@ -21,14 +23,18 @@ void testEdgeList();
 void testPrioQ();
 void testKruskal();
 void testPrim();
+void testDirectList();
+
 
 int main()
 {
 	srand(time(NULL));
+
 	//test2();
-	testKruskal();
+	//testKruskal();
 	//testPrim();
 	//testPrioQ();
+	testDirectList();
 
     return 0;
 }
@@ -110,7 +116,7 @@ void testEdgeList()
 	elist.insert_beg({2,4,6});
 	elist.display();
 	Edge ed[2] = { {1,2,3}, {4,5,6} };
-	Edge* eg = new Edge[2];
+	//Edge* eg = new Edge[2];
 	cout<< sizeof(ed)<<endl;
 	cout<< sizeof(elist)<<endl;
 	cout<< sizeof(Edge)<<endl;
@@ -169,5 +175,45 @@ void testKruskal()
 	lgraf.display();
 	lgraf.Prim().display();
 	lgraf.Kruskal().display();
+
+	lgraf.load_from_file("dane_mst.txt");
+	lgraf.display();
+	lgraf.Prim().display();
+	lgraf.Kruskal().display();
+
+	lgraf.load_from_file("dane_mst2.txt");
+	lgraf.display();
+	lgraf.Prim().display();
+	lgraf.Kruskal().display();
+
+}
+
+void testDirectList()
+{
+	int N = 10;
+	int prev[N];
+	int dist[N];
+
+	Direct_Graph_AMatrix dmatrix{0};
+	dmatrix.gen(N, 50);
+	dmatrix.display();
+	dmatrix.Dijkstra(0, dist, prev);
+
+	for(int i=0;i<N; i++)
+	{
+		cout<<i<<' '<<prev[i]<<' '<<dist[i]<<endl;
+	}
+
+
+	Direct_Graph_AList dlist{dmatrix};
+	//dlist.gen(10, 50);
+	dlist.display();
+	dlist.Dijkstra(0, dist, prev);
+
+	for(int i=0;i<N; i++)
+	{
+		cout<<i<<' '<<prev[i]<<' '<<dist[i]<<endl;
+	}
+
 
 }

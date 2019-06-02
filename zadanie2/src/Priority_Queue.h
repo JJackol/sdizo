@@ -14,7 +14,8 @@ class Priority_Queue
 		Edge pop();
 		void decrease_key(Edge e, int new_source, int new_key);
 
-
+		bool is_empty(){return _size<=0;}
+		int get_size(){return _size;};
 
 		void display();
 	protected:

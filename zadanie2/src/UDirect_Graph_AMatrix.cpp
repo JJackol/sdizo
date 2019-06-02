@@ -81,7 +81,7 @@
 				}
 			}
 
-			//generuje resztę wierzchołków
+			//generuje resztę krawędzi
 			while(i<=number_of_edges)
 			{
 				source = rand()%n;

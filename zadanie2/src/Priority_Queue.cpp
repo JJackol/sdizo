@@ -39,6 +39,7 @@ Edge Priority_Queue::pop()
 		return ret;
 }
 
+//decreases last element in 3el tuple, if keys and dest are equal
 void Priority_Queue::decrease_key(Edge e, int new_source, int new_key)
 {
 		int index = 0;
