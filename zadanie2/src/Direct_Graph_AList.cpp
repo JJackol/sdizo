@@ -26,6 +26,7 @@
 
 	void Direct_Graph_AList::clone( Direct_Graph_AMatrix& copy_g )
 	{
+		this->clear();
 		n = copy_g.get_n();
 		a_list = new Adjacency_List[n];
 

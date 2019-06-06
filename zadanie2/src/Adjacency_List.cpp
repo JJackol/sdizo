@@ -8,13 +8,13 @@
 
 	Adjacency_List::~Adjacency_List()
 	{
-		 Node * temp;
-			while(head != nullptr)
-				{
-					temp = head->next;
-					delete head;
-					head = temp;
-				}
+		Node * temp;
+		while(head != nullptr)
+			{
+				temp = head->next;
+				delete head;
+				head = temp;
+			}
 	}
 
 	void Adjacency_List::insert_beg(int _dest, int _weight)

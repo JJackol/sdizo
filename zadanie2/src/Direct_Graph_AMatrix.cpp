@@ -84,12 +84,12 @@
 		for(int i=0; i<n; i++)
 		{
 			dist[i] = Edge::NOT_AN_EDGE;
-			prev[i] = -1;
+			prev[i] = i;
 		}
 		dist[start] = 0;
 		prev[start] = start;
 
-		for(int i=0; i<n; i++)
+		for(int h=0; h<n; h++)
 		{
 			flag = false;
 			for(int i=0; i<n; i++)

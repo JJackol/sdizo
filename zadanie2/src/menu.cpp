@@ -203,6 +203,7 @@ void menu_sp()
 			cin >> n;
 			cout << " podaj gestosc grafu w % :";
 			cin >> dens;
+			start = rand()%n;
 
 			matrix_graf.gen(n, dens);
 			list_graf.clone(matrix_graf);
@@ -264,7 +265,7 @@ void menu_sp()
 
 			break;
 
-		case '6':  //tutaj wyświetlanie tablicy
+		case '6':
 
 			cout << " podaj liczbe wierzcholkow:";
 			cin >> n;
@@ -274,6 +275,26 @@ void menu_sp()
 			cin >> a;
 			cout << " podaj maksymalna wartosc wag:";
 			cin >> b;
+			matrix_graf.gen(n, dens, a, b);
+			list_graf.clone(matrix_graf);
+
+			list_graf.display();
+			matrix_graf.display();
+
+			break;
+
+		case '7':
+
+			cout << " podaj liczbe wierzcholkow: ";
+			cin >> n;
+			cout << " podaj gestosc grafu w %: ";
+			cin >> dens;
+			cout << " podaj minimalna wartosc wag: ";
+			cin >> a;
+			cout << " podaj maksymalna wartosc wag: ";
+			cin >> b;
+			cout << " podaj wierzcholek poczatkowy: ";
+			cin >> start;
 			matrix_graf.gen(n, dens, a, b);
 			list_graf.clone(matrix_graf);
 

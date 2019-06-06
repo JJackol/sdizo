@@ -37,6 +37,10 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Adjacency_List.cpp" />
 		<Unit filename="src/Adjacency_List.h" />
+		<Unit filename="src/Direct_Graph_AList.cpp" />
+		<Unit filename="src/Direct_Graph_AList.h" />
+		<Unit filename="src/Direct_Graph_AMatrix.cpp" />
+		<Unit filename="src/Direct_Graph_AMatrix.h" />
 		<Unit filename="src/Disjoint_Set.cpp" />
 		<Unit filename="src/Disjoint_Set.h" />
 		<Unit filename="src/Edge.cpp" />
@@ -51,6 +55,10 @@
 		<Unit filename="src/UDirect_Graph_AList.h" />
 		<Unit filename="src/UDirect_Graph_AMatrix.cpp" />
 		<Unit filename="src/UDirect_Graph_AMatrix.h" />
+		<Unit filename="src/menu.cpp" />
+		<Unit filename="src/menu.h" />
+		<Unit filename="src/testy.cpp" />
+		<Unit filename="src/testy.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
