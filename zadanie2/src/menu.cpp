@@ -182,6 +182,7 @@ void menu_sp()
 		cout << "4.Dijkstra" << endl;
 		cout << "5.Bellamn-Ford" << endl;
 		cout << "6.Wygeneruj i wybierz zakres generowanych wag" << endl;
+		cout << "7.Wygeneruj, wybierz zakres generowanych wag i wskaz wierzcholek poczatkowy" << endl;
 		cout << "0.Powrot do menu" << endl;
 		cout << "Podaj opcje:";
 

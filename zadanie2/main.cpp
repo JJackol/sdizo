@@ -12,9 +12,9 @@ int main()
 	//testPrim();
 	//testPrioQ();
 	//testDirectList();
-	pomiar(100);
+	//pomiar(1);
 
-	//menu();
+	menu();
 
     return 0;
 }
